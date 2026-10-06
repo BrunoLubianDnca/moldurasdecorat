@@ -19,7 +19,7 @@
 .instagram-actions .button-primary svg{width:17px;height:17px}
 .instagram-more{font-size:13px;font-weight:750}
 .instagram-more b{margin-left:8px;color:var(--orange);font-size:16px}
-.instagram-reels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.instagram-reels{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .instagram-reel{position:relative;aspect-ratio:9/13;overflow:hidden;background:var(--deep);color:#fff}
 .instagram-reel .reel-fallback{z-index:0;object-fit:cover;transition:transform .3s ease,filter .3s ease}
 .instagram-reel iframe{position:absolute;z-index:1;inset:0;width:100%;height:100%;border:0;background:var(--deep)}
@@ -358,8 +358,8 @@ html{font-size:16px}
   .instagram-copy{max-width:650px}
   .instagram-copy h2{font-size:48px}
   .instagram-copy>span{font-size:17px}
-  .instagram-reels{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:48px}
-  .instagram-reel{height:480px;aspect-ratio:auto}
+  .instagram-reels{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:48px}
+  .instagram-reel{height:auto;aspect-ratio:9/13}
 }
 
 .instagram-reel .reel-fallback{display:block}
@@ -371,7 +371,6 @@ html{font-size:16px}
 .instagram-reel:has(iframe) .reel-fallback{display:none}
 .instagram-reel:has(iframe) .reel-open{z-index:3}
 .instagram-reel:has(iframe) .reel-overlay,.instagram-reel:has(iframe) strong{display:none}
-.instagram-reel:nth-child(n+4){display:none}
 .category-card:nth-child(1) .category-image img{object-position:center 54%}
 .category-card:nth-child(2) .category-image img{object-position:center top;transform:scale(1.42);transform-origin:center top}
 .category-card:nth-child(3) .category-image img{object-position:center 48%}
