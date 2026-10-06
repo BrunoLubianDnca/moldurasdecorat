@@ -42,7 +42,7 @@ const instagramReels = [
   { number: "01", title: "Apresentação da Decorat", url: "https://www.instagram.com/reel/DW9-kGPBpSp/", image: instagramThumbOne },
   { number: "02", title: "Informações para realizar o projeto", url: "https://www.instagram.com/reel/DWEmuqBx0GY/", image: instagramThumbTwo },
   { number: "03", title: "Como é feita a moldura em EPS", url: "https://www.instagram.com/reel/DYiZfV7BYAj/", image: instagramThumbThree },
-  { number: "04", title: "Antes e depois", url: "https://www.instagram.com/reel/DK97ZY6OqzZ/", image: instagramThumbOne },
+  { number: "04", title: "Molduras resistentes na obra", url: "https://www.instagram.com/reel/DeIPml_uRYS/", image: instagramThumbOne },
   { number: "05", title: "Resultado nível uau", url: "https://www.instagram.com/reel/DIPdWr8twuw/", image: instagramThumbTwo },
 ];
 
