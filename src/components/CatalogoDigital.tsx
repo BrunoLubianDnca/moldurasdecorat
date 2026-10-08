@@ -117,11 +117,11 @@ export default function CatalogoDigital() {
                   <h3 className="catalogo-card-title">{product.codigo}</h3>
                   <div className="catalogo-card-specs">
                     <span><Ruler size={13} />
-                      {product.altura_mm ? `${product.altura_mm} mm` : "Sob consulta"}
+                      {product.altura_mm ? `${product.altura_mm} mm` : "Sob consulta"} <small>altura</small>
                     </span>
                     <span className="catalogo-card-spec-divider">×</span>
                     <span><Ruler size={13} />
-                      {product.largura_mm ? `${product.largura_mm} mm` : "Sob consulta"}
+                      {product.largura_mm ? `${product.largura_mm} mm` : "Sob consulta"} <small>projeção</small>
                     </span>
                   </div>
                 </div>

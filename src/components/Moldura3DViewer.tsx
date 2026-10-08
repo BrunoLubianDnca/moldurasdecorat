@@ -11,13 +11,15 @@ interface Moldura3DViewerProps {
   widthMm?: number | null;
   fitFactor?: number;
   mobileFitFactor?: number;
+  showHint?: boolean;
 }
 
-export default function Moldura3DViewer({ glbUrl, fitFactor = 0.76, mobileFitFactor }: Moldura3DViewerProps) {
+export default function Moldura3DViewer({ glbUrl, fitFactor = 0.76, mobileFitFactor, showHint = true }: Moldura3DViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const resetRef = useRef<(() => void) | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -153,7 +155,7 @@ export default function Moldura3DViewer({ glbUrl, fitFactor = 0.76, mobileFitFac
       if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
       resetRef.current = null;
     };
-  }, [fitFactor, glbUrl, mobileFitFactor]);
+  }, [fitFactor, glbUrl, mobileFitFactor, retryKey]);
 
   return (
     <div className="moldura-3d-shell">
@@ -163,10 +165,17 @@ export default function Moldura3DViewer({ glbUrl, fitFactor = 0.76, mobileFitFac
           <span>Preparando a vista da moldura…</span>
         </div>
       )}
-      {error && <div className="moldura-3d-error">{error}</div>}
+      {error && (
+        <div className="moldura-3d-error" role="alert">
+          <span>{error}</span>
+          <button type="button" onClick={() => { setError(null); setLoading(true); setRetryKey((current) => current + 1); }}>
+            Tentar novamente
+          </button>
+        </div>
+      )}
       <div ref={containerRef} className="moldura-3d-canvas" />
-      <div className="moldura-3d-hint" aria-hidden="true">Arraste para explorar o relevo</div>
-      <button className="moldura-3d-reset" type="button" onClick={() => resetRef.current?.()} aria-label="Reiniciar enquadramento 3D">
+      {showHint && <div className="moldura-3d-hint" aria-hidden="true">Arraste para girar · role para aproximar</div>}
+      <button className="moldura-3d-reset" type="button" onClick={() => resetRef.current?.()} aria-label="Reiniciar enquadramento 3D" title="Reiniciar enquadramento 3D">
         Reiniciar vista
       </button>
     </div>

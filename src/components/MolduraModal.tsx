@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
 import { X, Box, FileText, ZoomIn, MoveVertical, MoveHorizontal, Layers, Ruler, Download, Maximize2, Minimize2, ChevronDown } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -32,6 +32,52 @@ interface MolduraModalProps {
   onSelectWhatsApp: (product: ProductItem) => void;
 }
 
+function useDialogInteraction(enabled: boolean, onClose: () => void, dialogRef: RefObject<HTMLDivElement | null>, initialFocusRef: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    if (!enabled) return;
+
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const focusTimer = window.setTimeout(() => initialFocusRef.current?.focus({ preventScroll: true }), 0);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ));
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.clearTimeout(focusTimer);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, [dialogRef, enabled, initialFocusRef, onClose]);
+}
+
 function WhatsAppIcon({ size = 18 }: { size?: number }) {
   return (
     <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -46,6 +92,10 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const visualRef = useRef<HTMLElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useDialogInteraction(true, onClose, dialogRef, closeRef);
 
   useEffect(() => {
     const updateFullscreenState = () => setIsFullscreen(document.fullscreenElement === visualRef.current);
@@ -68,14 +118,14 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
 
   return (
     <div className="decorat-m001-backdrop" onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <div className={`decorat-m001-showroom ${isFullscreen ? "is-fullscreen" : ""}`}>
+      <div ref={dialogRef} className={`decorat-m001-showroom ${isFullscreen ? "is-fullscreen" : ""}`} role="dialog" aria-modal="true" aria-labelledby="decorat-m001-title" aria-describedby="decorat-m001-description">
         <section className="decorat-m001-visual" ref={visualRef}>
           <div className="decorat-m001-visual-meta">
             <span>CATÁLOGO DECORAT</span>
             <span>M001 · PERFIL ARQUITETÔNICO</span>
           </div>
 
-          <button onClick={onClose} className="decorat-m001-close" aria-label="Fechar showroom">
+          <button ref={closeRef} type="button" onClick={onClose} className="decorat-m001-close" aria-label="Fechar showroom" title="Fechar showroom">
             <X size={19} />
           </button>
 
@@ -87,6 +137,7 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
                 widthMm={product.largura_mm}
                 fitFactor={0.76}
                 mobileFitFactor={0.58}
+                showHint={false}
               />
             ) : (
               <div className="decorat-m001-render">
@@ -95,11 +146,11 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
             )}
 
             <div className={`decorat-m001-stage-footer ${view === "render" ? "is-render" : ""}`}>
-              {view === "3d" && <span>Arraste para girar · scroll para aproximar</span>}
+              {view === "3d" && <span>Arraste para girar · role para aproximar</span>}
               <div className="decorat-m001-view-controls">
-                <button type="button" className={view === "3d" ? "active" : ""} onClick={() => setView("3d")}>3D interativo</button>
-                <button type="button" className={view === "render" ? "active" : ""} onClick={() => setView("render")}>Render</button>
-                <button type="button" onClick={toggleFullscreen} aria-label={isFullscreen ? "Sair da tela cheia" : "Abrir tela cheia"}>
+                <button type="button" className={view === "3d" ? "active" : ""} onClick={() => setView("3d")} aria-pressed={view === "3d"}>3D interativo</button>
+                <button type="button" className={view === "render" ? "active" : ""} onClick={() => setView("render")} aria-pressed={view === "render"} title="Ver render estático">Imagem</button>
+                <button type="button" onClick={toggleFullscreen} aria-label={isFullscreen ? "Sair da tela cheia" : "Abrir tela cheia"} title={isFullscreen ? "Sair da tela cheia" : "Expandir visual"}>
                   {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
                 </button>
               </div>
@@ -111,8 +162,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
           <div className="decorat-m001-info-body">
             <div className="decorat-m001-info-kicker"><span /> {product.categoria}</div>
             <p className="decorat-m001-code">{product.codigo}</p>
-            <h2>Moldura <em>{product.codigo}</em></h2>
-            <p className="decorat-m001-description">
+            <h2 id="decorat-m001-title">Moldura <em>{product.codigo}</em></h2>
+            <p id="decorat-m001-description" className="decorat-m001-description">
               Perfil arquitetônico em EPS para fachadas com acabamento preciso, leveza e presença.
             </p>
 
@@ -130,13 +181,13 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
               <WhatsAppIcon size={20} />
             </button>
 
-            <button type="button" className="decorat-m001-technical-toggle" onClick={() => setShowTechnical((current) => !current)}>
+            <button type="button" className="decorat-m001-technical-toggle" onClick={() => setShowTechnical((current) => !current)} aria-expanded={showTechnical} aria-controls="decorat-m001-technical">
               <span>{showTechnical ? "Ocultar informações técnicas" : "Ver informações técnicas"}</span>
               <ChevronDown size={16} className={showTechnical ? "rotated" : ""} />
             </button>
 
             {showTechnical && (
-              <div className="decorat-m001-technical" role="region" aria-label="Informações técnicas">
+              <div id="decorat-m001-technical" className="decorat-m001-technical" role="region" aria-label="Informações técnicas">
                 <div><span>Material</span><strong>EPS revestido Decorat</strong></div>
                 <div><span>Comprimento padrão</span><strong>2,00 metros</strong></div>
               </div>
@@ -156,6 +207,10 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
 export default function MolduraModal({ product, onClose, onSelectWhatsApp }: MolduraModalProps) {
   const [activeTab, setActiveTab] = useState<"render" | "perfil" | "3d">("render");
   const [zoom, setZoom] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useDialogInteraction(Boolean(product) && product?.codigo !== "M001", onClose, dialogRef, closeRef);
 
   if (!product) return null;
 
@@ -165,10 +220,10 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
 
   return (
     <div className="catalogo-modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="catalogo-modal-card">
+      <div ref={dialogRef} className="catalogo-modal-card" role="dialog" aria-modal="true" aria-labelledby="catalogo-modal-title">
         
         {/* Close Button */}
-        <button onClick={onClose} className="catalogo-modal-close" aria-label="Fechar">
+        <button ref={closeRef} type="button" onClick={onClose} className="catalogo-modal-close" aria-label="Fechar modal" title="Fechar modal">
           <X style={{ width: 18, height: 18 }} />
         </button>
 
@@ -180,6 +235,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
             <button
               onClick={() => setActiveTab("render")}
               className={`catalogo-modal-tab-btn ${activeTab === "render" ? "active" : ""}`}
+              aria-pressed={activeTab === "render"}
             >
               <FileText style={{ width: 14, height: 14 }} />
               <span>Render 3D</span>
@@ -187,6 +243,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
             <button
               onClick={() => setActiveTab("perfil")}
               className={`catalogo-modal-tab-btn ${activeTab === "perfil" ? "active" : ""}`}
+              aria-pressed={activeTab === "perfil"}
             >
               <FileText style={{ width: 14, height: 14 }} />
               <span>Corte Técnico</span>
@@ -194,6 +251,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
             <button
               onClick={() => setActiveTab("3d")}
               className={`catalogo-modal-tab-btn ${activeTab === "3d" ? "active-3d" : ""}`}
+              aria-pressed={activeTab === "3d"}
             >
               <Box style={{ width: 14, height: 14 }} />
               <span>3D Interativo</span>
@@ -275,7 +333,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
               MOLDURA EPS DECORAT
             </span>
 
-            <h2 className="catalogo-modal-title">Moldura {product.codigo}</h2>
+            <h2 id="catalogo-modal-title" className="catalogo-modal-title">Moldura {product.codigo}</h2>
             <p className="catalogo-modal-desc">
               Moldura arquitetônica em EPS de alta densidade, leve, durável e pronta para aplicação e acabamento em fachada ou ambiente interno.
             </p>
@@ -295,7 +353,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
                 <div className="catalogo-spec-item" style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <MoveHorizontal style={{ width: 20, height: 20, color: "var(--deep)", flexShrink: 0, marginTop: 2 }} />
                   <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Largura / Projeção</span>
+                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Projeção</span>
                     <strong style={{ fontSize: 15, color: "var(--deep)" }}>{product.largura_mm ? `${product.largura_mm} mm` : "Sob consulta"}</strong>
                   </div>
                 </div>

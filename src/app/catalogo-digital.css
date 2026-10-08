@@ -555,6 +555,26 @@
   font-size: 12px;
 }
 
+.moldura-3d-error {
+  align-content: center;
+  justify-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.moldura-3d-error button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(14, 69, 96, .2);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--deep);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .moldura-3d-spinner {
   width: 22px;
   height: 22px;
@@ -695,6 +715,16 @@
   background: #fff;
 }
 
+.decorat-m001-close:focus-visible,
+.decorat-m001-view-controls button:focus-visible,
+.decorat-m001-quote:focus-visible,
+.decorat-m001-technical-toggle:focus-visible,
+.catalogo-modal-close:focus-visible,
+.catalogo-modal-tab-btn:focus-visible {
+  outline: 3px solid rgba(247, 148, 29, .42);
+  outline-offset: 3px;
+}
+
 .decorat-m001-stage {
   position: relative;
   z-index: 1;
@@ -738,7 +768,8 @@
 
 .decorat-m001-stage .moldura-3d-reset {
   right: 16px;
-  bottom: 70px;
+  top: 16px;
+  bottom: auto;
   border-color: rgba(14, 69, 96, .1);
   background: rgba(255, 253, 249, .72);
 }
@@ -793,7 +824,7 @@
 }
 
 .decorat-m001-view-controls button {
-  min-height: 29px;
+  min-height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1029,11 +1060,11 @@
   }
   .decorat-m001-visual { min-height: 58vh; padding: 22px 16px 16px; }
   .decorat-m001-visual::before { inset: 10px; border-radius: 15px; }
-  .decorat-m001-visual-meta { padding-right: 50px; font-size: 8px; }
-  .decorat-m001-close { top: 17px; right: 17px; width: 36px; height: 36px; }
+  .decorat-m001-visual-meta { padding-right: 50px; font-size: 9px; }
+  .decorat-m001-close { top: 17px; right: 17px; width: 40px; height: 40px; }
   .decorat-m001-stage { margin-top: 16px; }
   .decorat-m001-stage-footer { display: block; right: 10px; bottom: 10px; left: 10px; }
-  .decorat-m001-stage-footer > span { display: inline-block; margin-bottom: 8px; font-size: 8px; }
+  .decorat-m001-stage-footer > span { display: inline-block; margin-bottom: 8px; font-size: 9px; }
   .decorat-m001-view-controls { width: fit-content; margin-left: auto; }
   .decorat-m001-info { min-height: 0; padding: 30px 20px 20px; }
   .decorat-m001-info-body { max-width: none; }
@@ -1046,8 +1077,8 @@
   .decorat-m001-dimensions strong { font-size: 22px; }
   .decorat-m001-dimensions small { font-size: 9px; }
   .decorat-m001-quote { min-height: 50px; margin-top: 22px; padding-inline: 19px; font-size: 12px; }
-  .decorat-m001-technical-toggle { margin-top: 9px; font-size: 10px; }
-  .decorat-m001-info-footer { margin-top: 30px; font-size: 7px; }
+  .decorat-m001-technical-toggle { margin-top: 9px; font-size: 11px; }
+  .decorat-m001-info-footer { margin-top: 30px; font-size: 8px; }
 }
 
 @media (max-width: 520px) {
@@ -1272,8 +1303,9 @@
 }
 
 .catalogo-card-specs { gap: 8px; margin-bottom: 17px; color: #63747d; font-size: 11px; }
-.catalogo-card-specs span { display: inline-flex; align-items: center; gap: 5px; }
+.catalogo-card-specs span { display: inline-flex; align-items: baseline; gap: 5px; }
 .catalogo-card-specs svg { color: var(--orange-dark); stroke-width: 1.8; }
+.catalogo-card-specs small { color: #8a959a; font-size: 9px; letter-spacing: .02em; }
 .catalogo-card-spec-divider { color: #aab2b4; }
 
 .catalogo-card-btn {
