@@ -1,0 +1,8 @@
+{
+  "source": "C:/Users/Lubian/Dani/moldurasdecorat/public/catalogo/perfis/M017.svg",
+  "code": "M017",
+  "profileEnvelope": {"width": 61, "height": 171},
+  "extrusionLength": 547,
+  "cleanup": "Shapely simplify tolerance 1.25; stepped contour retained; no smoothing",
+  "points": [(61.0, 171.0), (0.0, 170.0), (1.0, 0.0), (10.0, 0.0), (10.0, 19.0), (17.0, 19.0), (16.0, 31.0), (14.0, 29.0), (12.0, 31.0), (12.0, 103.0), (16.0, 105.0), (17.0, 110.0), (24.0, 111.0), (25.0, 119.0), (30.0, 119.0), (31.0, 139.0), (37.0, 139.0), (39.0, 145.0), (56.0, 146.0), (55.0, 161.0), (61.0, 162.0)]
+}

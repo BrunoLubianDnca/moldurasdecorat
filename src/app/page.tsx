@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, Scan
 import { InstagramBrandIcon, WhatsAppBrandIcon } from "@/components/BrandIcons";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import CatalogoDigital from "@/components/CatalogoDigital";
 import heroImage from "../../Assets/imagens/layout.png";
 import categoryExternal from "../../Assets/Fotos empresa oficial/WhatsApp Image 2026-10-05 at 17.48.53 (2).jpeg";
 import categoryBoiserie from "../../Assets/Fotos empresa oficial/WhatsApp Image 2026-10-05 at 17.49.09.jpeg";
@@ -317,9 +318,11 @@ export default function Home() {
       </section>
 
       <section className="products section">
-        <div className="section-title-row"><div><p>PEÇAS PREMIUM</p><h2>Perfis selecionados<br />para o seu projeto.</h2></div><a href="#catalogo">Ver todo o catálogo <b>→</b></a></div>
-        <div className="product-grid">{products.map((product) => <article className="product-card" key={product.code}><div className="product-visual"><small>{product.family}</small><Image src={product.image} alt={product.name} fill sizes="(max-width: 767px) 45vw, 25vw" /></div><h3>{product.name}</h3><p>{product.code}</p><a href="#contato">Ver detalhes <b>→</b></a></article>)}</div>
+        <div className="section-title-row"><div><p>PEÇAS PREMIUM</p><h2>Perfis selecionados<br />para o seu projeto.</h2></div><a href="#catalogo-digital">Ver todo o catálogo <b>→</b></a></div>
+        <div className="product-grid">{products.map((product) => <article className="product-card" key={product.code}><div className="product-visual"><small>{product.family}</small><Image src={product.image} alt={product.name} fill sizes="(max-width: 767px) 45vw, 25vw" /></div><h3>{product.name}</h3><p>{product.code}</p><a href="#catalogo-digital">Ver detalhes <b>→</b></a></article>)}</div>
       </section>
+
+      <CatalogoDigital />
 
       <section className="about section" id="quem-somos">
         <div className="about-label"><p>QUEM SOMOS</p><span>Desde 2019</span></div>

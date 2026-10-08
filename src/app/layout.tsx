@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/archivo";
 import "./premium.css";
+import "./catalogo-digital.css";
 
 export const metadata: Metadata = {
   title: {
