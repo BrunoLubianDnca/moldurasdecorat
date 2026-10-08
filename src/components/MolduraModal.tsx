@@ -94,8 +94,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
               </div>
             )}
 
-            <div className="decorat-m001-stage-footer">
-              <span>Arraste para girar · scroll para aproximar</span>
+            <div className={`decorat-m001-stage-footer ${view === "render" ? "is-render" : ""}`}>
+              {view === "3d" && <span>Arraste para girar · scroll para aproximar</span>}
               <div className="decorat-m001-view-controls">
                 <button type="button" className={view === "3d" ? "active" : ""} onClick={() => setView("3d")}>3D interativo</button>
                 <button type="button" className={view === "render" ? "active" : ""} onClick={() => setView("render")}>Render</button>
