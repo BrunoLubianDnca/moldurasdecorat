@@ -9,9 +9,11 @@ interface Moldura3DViewerProps {
   glbUrl: string;
   heightMm?: number | null;
   widthMm?: number | null;
+  fitFactor?: number;
+  mobileFitFactor?: number;
 }
 
-export default function Moldura3DViewer({ glbUrl }: Moldura3DViewerProps) {
+export default function Moldura3DViewer({ glbUrl, fitFactor = 0.76, mobileFitFactor }: Moldura3DViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const resetRef = useRef<(() => void) | null>(null);
   const [loading, setLoading] = useState(true);
@@ -75,7 +77,7 @@ export default function Moldura3DViewer({ glbUrl }: Moldura3DViewerProps) {
       const cameraDistance = Math.max(
         sphere.radius / Math.tan(verticalFov / 2),
         sphere.radius / Math.tan(horizontalFov / 2),
-      ) * 0.76;
+      ) * (window.innerWidth <= 680 ? (mobileFitFactor ?? fitFactor) : fitFactor);
       // Approach from the profile end first, with enough negative-Z angle to
       // keep the stepped decorative side visible across the length.
       camera.position.copy(center).add(viewDirection.multiplyScalar(cameraDistance));
@@ -151,7 +153,7 @@ export default function Moldura3DViewer({ glbUrl }: Moldura3DViewerProps) {
       if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
       resetRef.current = null;
     };
-  }, [glbUrl]);
+  }, [fitFactor, glbUrl, mobileFitFactor]);
 
   return (
     <div className="moldura-3d-shell">

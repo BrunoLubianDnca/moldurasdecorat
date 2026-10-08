@@ -71,8 +71,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
       <div className={`decorat-m001-showroom ${isFullscreen ? "is-fullscreen" : ""}`}>
         <section className="decorat-m001-visual" ref={visualRef}>
           <div className="decorat-m001-visual-meta">
-            <span>DECORAT / COLLECTION 01</span>
-            <span>M001 · PROFILE STUDY</span>
+            <span>CATÁLOGO DECORAT</span>
+            <span>M001 · PERFIL ARQUITETÔNICO</span>
           </div>
 
           <button onClick={onClose} className="decorat-m001-close" aria-label="Fechar showroom">
@@ -85,6 +85,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
                 glbUrl={product.modelo3d}
                 heightMm={product.altura_mm}
                 widthMm={product.largura_mm}
+                fitFactor={0.76}
+                mobileFitFactor={0.58}
               />
             ) : (
               <div className="decorat-m001-render">
@@ -111,7 +113,7 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
             <p className="decorat-m001-code">{product.codigo}</p>
             <h2>Moldura <em>{product.codigo}</em></h2>
             <p className="decorat-m001-description">
-              Um perfil arquitetônico de presença discreta e acabamento preciso para compor fachadas com proporção e personalidade.
+              Perfil arquitetônico em EPS para fachadas com acabamento preciso, leveza e presença.
             </p>
 
             <div className="decorat-m001-dimensions">
@@ -142,7 +144,7 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
           </div>
 
           <div className="decorat-m001-info-footer">
-            <span>DECORAT / MOLDURAS ARQUITETÔNICAS</span>
+            <span>MOLDURAS EM EPS · DECORAT</span>
             <span>Campo Grande · MS</span>
           </div>
         </aside>

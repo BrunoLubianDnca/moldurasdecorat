@@ -708,6 +708,8 @@
 .decorat-m001-stage > .moldura-3d-shell,
 .decorat-m001-stage > .decorat-m001-render,
 .decorat-m001-stage > div:has(.moldura-3d-shell) {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -715,7 +717,7 @@
 
 .decorat-m001-stage .moldura-3d-shell {
   min-height: 0;
-  height: 100%;
+  height: auto;
   border: 0;
   border-radius: 18px;
   background: transparent;
@@ -1029,12 +1031,19 @@
   .decorat-m001-stage-footer { display: block; right: 10px; bottom: 10px; left: 10px; }
   .decorat-m001-stage-footer > span { display: inline-block; margin-bottom: 8px; font-size: 8px; }
   .decorat-m001-view-controls { width: fit-content; margin-left: auto; }
-  .decorat-m001-info { min-height: 0; padding: 34px 24px 22px; }
+  .decorat-m001-info { min-height: 0; padding: 30px 20px 20px; }
   .decorat-m001-info-body { max-width: none; }
-  .decorat-m001-code { margin-top: 28px; }
-  .decorat-m001-info h2 { font-size: 46px; }
-  .decorat-m001-description { margin: 20px 0 28px; }
-  .decorat-m001-info-footer { margin-top: 42px; }
+  .decorat-m001-code { margin-top: 26px; font-size: 10px; letter-spacing: .18em; }
+  .decorat-m001-info h2 { font-size: 34px; line-height: 1; letter-spacing: -.055em; }
+  .decorat-m001-description { max-width: 300px; margin: 18px 0 24px; font-size: 12px; line-height: 1.55; }
+  .decorat-m001-dimensions { padding: 16px 0 18px; }
+  .decorat-m001-dimensions > span { font-size: 8px; }
+  .decorat-m001-dimensions > div { margin-top: 10px; gap: 14px; }
+  .decorat-m001-dimensions strong { font-size: 22px; }
+  .decorat-m001-dimensions small { font-size: 9px; }
+  .decorat-m001-quote { min-height: 50px; margin-top: 22px; padding-inline: 19px; font-size: 12px; }
+  .decorat-m001-technical-toggle { margin-top: 9px; font-size: 10px; }
+  .decorat-m001-info-footer { margin-top: 30px; font-size: 7px; }
 }
 
 @media (max-width: 520px) {
