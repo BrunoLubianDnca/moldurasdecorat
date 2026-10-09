@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <header>
           <p>PRIVACIDADE E TRANSPARÊNCIA</p>
           <h1>Política de privacidade</h1>
-          <span>Última atualização: 8 de outubro de 2026</span>
+          <span>Última atualização: 9 de outubro de 2026</span>
         </header>
 
         <section>
