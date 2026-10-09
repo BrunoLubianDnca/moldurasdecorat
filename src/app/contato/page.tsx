@@ -8,18 +8,18 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { createWhatsAppUrl, siteConfig } from "@/config/site";
 
-import facadeImage from "../../../Assets/institucional/02-fachada-residencial.jpg";
-import gardenImage from "../../../Assets/institucional/01-foto-capa-obra.jpg";
-import andressaImage from "../../../Assets/institucional/03-foto-sobre-nos-andressa.jpg";
-import productImage from "../../../Assets/institucional/05-andressa-com-moldura.jpg";
+import facadeImage from "../../../Assets/institucional/07-fachada-residencial-clean.jpg";
+import gardenImage from "../../../Assets/institucional/08-detalhe-fachada-jardim-clean.jpg";
+import moldingDetailImage from "../../../Assets/institucional/09-detalhe-molduras-clean.jpg";
+import contemporaryFacadeImage from "../../../Assets/institucional/10-fachada-contemporanea-clean.jpg";
 
 const WHATSAPP_URL = createWhatsAppUrl("Olá, gostaria de solicitar um orçamento.");
 
 const galleryImages = [
   { src: facadeImage, alt: "Fachada residencial com molduras arquitetônicas Decorat" },
   { src: gardenImage, alt: "Detalhe de moldura Decorat aplicada em área externa" },
-  { src: andressaImage, alt: "Andressa Lubian apresentando perfis de molduras Decorat" },
-  { src: productImage, alt: "Andressa Lubian com uma moldura arquitetônica em EPS" },
+  { src: moldingDetailImage, alt: "Detalhe de molduras arquitetônicas aplicadas em fachada residencial" },
+  { src: contemporaryFacadeImage, alt: "Fachada contemporânea finalizada com molduras arquitetônicas" },
 ];
 
 export default function ContactPage() {

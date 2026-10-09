@@ -725,11 +725,7 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   border-left: 1px solid var(--line);
 }
 .about-hero-visual:after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border: 1px solid rgba(14,69,96,.12);
-  pointer-events: none;
+  display: none;
 }
 .about-hero-visual img {
   object-fit: cover;
@@ -742,7 +738,7 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
 }
 .about-story-grid {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
   gap: 48px;
 }
 .about-story-heading h2 {
@@ -789,13 +785,15 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   grid-template-columns: minmax(0, 47%) minmax(0, 1fr);
   gap: clamp(42px, 7vw, 96px);
   align-items: center;
-  background: var(--deep);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #07354b 0%, var(--deep) 72%);
 }
 .about-profile-visual {
   position: relative;
   min-height: 620px;
   overflow: hidden;
-  border-radius: 0 96px 0 0;
+  border-right: 4px solid var(--orange);
 }
 .about-profile-visual img {
   object-fit: cover;
@@ -1155,7 +1153,8 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   .about-profile-visual {
     min-height: 118vw;
     max-height: 640px;
-    border-radius: 0 64px 0 0;
+    border-right: 0;
+    border-bottom: 4px solid var(--orange);
   }
   .about-profile-copy {
     max-width: none;

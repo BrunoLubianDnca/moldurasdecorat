@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import aboutHeroImage from "../../../Assets/institucional/03-foto-sobre-nos-andressa.jpg";
-import aboutProfileImage from "../../../Assets/institucional/05-andressa-com-moldura.jpg";
+import aboutHeroImage from "../../../Assets/institucional/03-sobre-nos-clean.webp";
+import aboutProfileImage from "../../../Assets/institucional/05-andressa-moldura-clean.webp";
 
 export const metadata: Metadata = {
   title: "Quem somos",
