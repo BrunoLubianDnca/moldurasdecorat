@@ -310,6 +310,18 @@ html{font-size:16px}
 .footer-address svg{stroke-width:1.8}
 .footer-credit{color:inherit;transition:color .2s ease}
 .footer-credit:hover,.footer-credit:focus-visible{color:var(--orange)}
+
+.legal-page{background:var(--paper)}
+.legal-content{width:min(860px,calc(100% - 2 * var(--pad)));margin:0 auto;padding:88px 0 110px}
+.legal-content header{padding-bottom:42px;border-bottom:1px solid var(--line)}
+.legal-content header>p{margin:0 0 16px;color:var(--orange);font-size:10px;font-weight:800;letter-spacing:.18em}
+.legal-content h1{margin:0 0 14px;color:var(--deep);font-size:clamp(38px,5vw,62px);line-height:.98;letter-spacing:-.05em}
+.legal-content header span{color:var(--muted);font-size:12px}
+.legal-content section{padding:34px 0;border-bottom:1px solid var(--line)}
+.legal-content h2{margin:0 0 12px;color:var(--deep);font-size:20px;letter-spacing:-.02em}
+.legal-content section p{max-width:760px;margin:0;color:var(--muted);font-size:14px;line-height:1.75}
+.legal-content section a{color:var(--deep);font-weight:750;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:767px){.legal-content{padding:54px 0 72px}.legal-content header{padding-bottom:30px}.legal-content section{padding:26px 0}.legal-content h1{font-size:40px}}
 @media (min-width:768px){
   .footer-main{grid-template-columns:minmax(220px,1fr) auto minmax(360px,1fr);gap:64px}
   .footer-contact-links{gap:18px}
@@ -720,8 +732,8 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   pointer-events: none;
 }
 .about-hero-visual img {
-  object-fit: contain;
-  padding: 12%;
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 /* STORY SECTION */
@@ -770,6 +782,41 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
 }
 .about-story-text p:last-child {
   margin-bottom: 0;
+}
+
+.about-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 47%) minmax(0, 1fr);
+  gap: clamp(42px, 7vw, 96px);
+  align-items: center;
+  background: var(--deep);
+}
+.about-profile-visual {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 0 96px 0 0;
+}
+.about-profile-visual img {
+  object-fit: cover;
+  object-position: center 35%;
+}
+.about-profile-copy {
+  max-width: 560px;
+  padding-right: var(--pad);
+}
+.about-profile-copy h2 {
+  margin: 0 0 24px;
+  color: #fff;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+.about-profile-copy p:not(.about-kicker) {
+  margin: 0 0 18px;
+  color: rgba(255,255,255,.72);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 /* DIFFERENTIAL SECTION */
@@ -1057,6 +1104,13 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   .about-production-grid {
     gap: 40px;
   }
+  .about-profile {
+    grid-template-columns: minmax(0, 48%) minmax(0, 1fr);
+    gap: 36px;
+  }
+  .about-profile-visual {
+    min-height: 520px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1076,12 +1130,12 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
     font-size: 38px;
   }
   .about-hero-visual {
-    height: 200px;
+    height: min(76vw, 430px);
     border-left: 0;
     border-top: 1px solid var(--line);
   }
   .about-hero-visual img {
-    padding: 8% 12%;
+    object-position: center 38%;
   }
   .about-story-grid {
     grid-template-columns: 1fr;
@@ -1092,6 +1146,23 @@ main:has(.attendance-backdrop) .whatsapp{opacity:1;pointer-events:auto}
   }
   .about-story-heading .about-facts {
     margin-top: 20px;
+  }
+  .about-profile {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .about-profile-visual {
+    min-height: 118vw;
+    max-height: 640px;
+    border-radius: 0 64px 0 0;
+  }
+  .about-profile-copy {
+    max-width: none;
+    padding: 42px var(--pad) 52px;
+  }
+  .about-profile-copy h2 {
+    font-size: 31px;
   }
   .about-pillars-column {
     grid-template-columns: 1fr;
@@ -1198,7 +1269,7 @@ footer{border-top:1px solid var(--line);background:#fff}
   .contact-hero-copy{padding:38px var(--pad) 30px}
   .contact-hero h1{font-size:clamp(38px,11vw,45px)}
   .contact-location{margin-right:var(--pad);margin-left:var(--pad)}
-  .about-cta{margin-right:calc(var(--pad) * -1);margin-left:calc(var(--pad) * -1);padding-right:var(--pad);padding-left:var(--pad)}
+  .about-cta{margin-right:0;margin-left:0;padding-right:var(--pad);padding-left:var(--pad)}
   .footer-main nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;text-align:left}
   .footer-contact{width:100%;justify-self:stretch}
   .footer-contact-links{flex-wrap:wrap}

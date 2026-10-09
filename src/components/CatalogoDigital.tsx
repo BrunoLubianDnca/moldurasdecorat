@@ -4,11 +4,10 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Box, Filter, Ruler, Search } from "lucide-react";
 import catalogDataRaw from "@/data/catalogo.json";
+import { createWhatsAppUrl } from "@/config/site";
 import MolduraModal, { ProductItem } from "./MolduraModal";
 
 const catalogData = catalogDataRaw as ProductItem[];
-
-const WHATSAPP_BASE_URL = "https://api.whatsapp.com/send/?1=pt_BR&phone=5567999257861";
 
 export default function CatalogoDigital() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +33,7 @@ export default function CatalogoDigital() {
     const text = `Olá! Gostaria de solicitar um orçamento para a moldura ${product.codigo} (${
       product.altura_mm ? `${product.altura_mm}x${product.largura_mm}mm` : "dimensões no catálogo"
     }).`;
-    const url = `${WHATSAPP_BASE_URL}&text=${encodeURIComponent(text)}`;
+    const url = createWhatsAppUrl(text);
     window.open(url, "_blank");
   };
 

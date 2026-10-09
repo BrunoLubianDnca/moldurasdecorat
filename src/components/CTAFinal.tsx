@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowRight, Phone, MapPin, Mail, Clock } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 const PETROL = "#153746";
 const ORANGE = "#F56510";
@@ -18,9 +19,9 @@ export default function CTAFinal() {
   };
 
   const infos = [
-    { Icon: Phone,  label: "WhatsApp",  value: "(67) 9 9999-9999" },
-    { Icon: Mail,   label: "E-mail",    value: "decorat.molduras@gmail.com" },
-    { Icon: MapPin, label: "Endereço",  value: "Rua Pintassilgo, 232, Campo Grande, MS. CEP 79013-790" },
+    { Icon: Phone,  label: "WhatsApp",  value: siteConfig.phoneDisplay },
+    { Icon: Mail,   label: "E-mail",    value: siteConfig.email },
+    { Icon: MapPin, label: "Endereço",  value: `${siteConfig.address.street}, ${siteConfig.address.neighborhood}, ${siteConfig.address.city} - ${siteConfig.address.region}` },
     { Icon: Clock,  label: "Horário",   value: "Segunda a sexta, das 8h às 18h. Sábado, das 8h às 12h" },
   ];
 
@@ -140,7 +141,7 @@ export default function CTAFinal() {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/decorat.molduras/"
+              href={siteConfig.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               style={{

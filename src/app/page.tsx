@@ -8,6 +8,7 @@ import { InstagramBrandIcon, WhatsAppBrandIcon } from "@/components/BrandIcons";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import CatalogoDigital from "@/components/CatalogoDigital";
+import { createWhatsAppUrl, siteConfig } from "@/config/site";
 import heroImage from "../../Assets/imagens/layout.png";
 import categoryExternal from "../../Assets/Fotos empresa oficial/WhatsApp Image 2026-10-05 at 17.48.53 (2).jpeg";
 import categoryBoiserie from "../../Assets/Fotos empresa oficial/WhatsApp Image 2026-10-05 at 17.49.09.jpeg";
@@ -47,9 +48,9 @@ const instagramReels = [
   { number: "05", title: "Resultado nível uau", url: "https://www.instagram.com/reel/DIPdWr8twuw/", image: instagramThumbTwo },
 ];
 
-const WHATSAPP_URL = "https://api.whatsapp.com/send/?1=pt_BR&phone=5567999257861";
-const INSTAGRAM_URL = "https://www.instagram.com/decorat.molduras/";
-const ADDRESS_URL = "https://www.google.com.br/search?kgmid=/g/11j0j5f7xp&hl=pt-BR&q=DECORAT+FABRICA+DE+MOLDURAS+DE+EPS+(ISOPOR)&shem=epsd1,esd2e,ltae,rimspwouoe,sdpie&shndl=30&source=sh/x/loc/osrp/m5/1&kgs=ff1b3324cb3efaff&utm_source=epsd1,esd2e,ltae,rimspwouoe,sdpie,sh/x/loc/osrp/m5/1";
+const WHATSAPP_URL = createWhatsAppUrl();
+const INSTAGRAM_URL = siteConfig.instagramUrl;
+const ADDRESS_URL = siteConfig.addressUrl;
 
 const processSteps = [
   ["01", "Primeiro contato", "Você envia projeto, fotos, referências ou medidas pelo WhatsApp.", FileText],

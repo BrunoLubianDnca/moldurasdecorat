@@ -3,11 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import productImage from "../../../Assets/peças/Boiserie Clássica — BI00210.png";
+import aboutHeroImage from "../../../Assets/institucional/03-foto-sobre-nos-andressa.jpg";
+import aboutProfileImage from "../../../Assets/institucional/05-andressa-com-moldura.jpg";
 
 export const metadata: Metadata = {
   title: "Quem somos",
   description: "Conheça a Decorat e o trabalho que une arquitetura, precisão e fabricação personalizada de molduras em EPS.",
+  alternates: { canonical: "/quem-somos" },
 };
 
 export default function AboutPage() {
@@ -28,13 +30,13 @@ export default function AboutPage() {
               no projeto, <em>não na produção.</em>
             </h1>
             <p>
-              A Decorat nasceu da experiência com arquitetura e da percepção de que uma moldura não pode ser tratada apenas como uma peça decorativa.
+              Desde 2019, transformamos referências e projetos em molduras arquitetônicas para fachadas e interiores.
             </p>
             <p>
-              Ela precisa respeitar proporções, medidas, detalhes e, principalmente, aquilo que foi pensado para a obra.
+              Nossa fábrica fica em Campo Grande, Mato Grosso do Sul, e atende projetos em todo o território nacional.
             </p>
             <p>
-              Foi com essa visão que, em 2019, nasceu a Decorat.
+              Cada peça nasce com atenção às proporções, medidas e detalhes que fazem o projeto funcionar na obra.
             </p>
             <Link className="button-primary" href="/contato">
               Enviar projeto <b>→</b>
@@ -42,7 +44,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="about-hero-visual">
-          <Image src={productImage} alt="Detalhe de moldura Decorat" fill sizes="(max-width: 767px) 100vw, 45vw" priority />
+          <Image src={aboutHeroImage} alt="Andressa Lubian na fábrica da Decorat com perfis de molduras em EPS" fill sizes="(max-width: 767px) 100vw, 45vw" priority />
         </div>
       </section>
 
@@ -58,22 +60,38 @@ export default function AboutPage() {
                 <small>Campo Grande — MS</small>
               </span>
               <span>
-                <b>Todo o Brasil</b>
-                <small>Projetos enviados</small>
+                <b>Atendimento nacional</b>
+                <small>Envio para todo o Brasil</small>
               </span>
             </div>
           </div>
           <div className="about-story-text">
             <p>
-              Durante os últimos anos da faculdade de Arquitetura, Andressa Lubian teve seu primeiro contato com molduras em EPS através de um estágio.
+              A Decorat fabrica molduras externas e internas em EPS e desenvolve soluções personalizadas conforme o projeto e a necessidade de cada cliente.
             </p>
             <p>
-              Depois da formação, mesmo com o encerramento das atividades da empresa onde trabalhava, antigos clientes continuaram procurando por esse tipo de solução.
+              Durante os últimos anos da faculdade de Arquitetura, Andressa Lubian teve seu primeiro contato com esse universo por meio de um estágio. Depois da formação, antigos clientes continuaram procurando por esse tipo de solução.
             </p>
             <p>
               Foi dessa oportunidade, junto com Thiago, que nasceu a Decorat. O que começou com experiência técnica e alguns projetos foi se transformando em uma fábrica especializada em molduras arquitetônicas personalizadas.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="about-profile section" aria-labelledby="about-profile-title">
+        <div className="about-profile-visual">
+          <Image src={aboutProfileImage} alt="Andressa Lubian segurando uma moldura arquitetônica Decorat" fill sizes="(max-width: 767px) 100vw, 44vw" />
+        </div>
+        <div className="about-profile-copy">
+          <p className="about-kicker">ARQUITETURA PRÓXIMA DA FABRICAÇÃO</p>
+          <h2 id="about-profile-title">Decisões técnicas com olhar para o resultado final.</h2>
+          <p>
+            A presença da arquitetura dentro da fábrica aproxima intenção e execução. Antes da produção, referências, proporções e medidas são analisadas para que a solução faça sentido no conjunto da obra.
+          </p>
+          <p>
+            Esse acompanhamento orienta o desenvolvimento de perfis personalizados e deixa o processo mais claro para clientes, arquitetos e profissionais da construção.
+          </p>
         </div>
       </section>
 
