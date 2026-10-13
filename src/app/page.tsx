@@ -3,11 +3,10 @@
 import Image, { type StaticImageData } from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
-import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench, House, Lightbulb, Layers3 } from "lucide-react";
 import { InstagramBrandIcon, WhatsAppBrandIcon } from "@/components/BrandIcons";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import CatalogoDigital from "@/components/CatalogoDigital";
 import { createWhatsAppUrl, siteConfig } from "@/config/site";
 import heroImage from "../../Assets/imagens/layout.png";
 import categoryExternal from "../../Assets/Fotos empresa oficial/WhatsApp Image 2026-10-05 at 17.48.53 (2).jpeg";
@@ -21,9 +20,6 @@ import productPilar from "../../Assets/peças/Pilar Decorativo — PI00380.png";
 import productFilete from "../../Assets/peças/Filete Externo — FI00215.png";
 import beforeImage from "../../Assets/imagens_isoframe/Vista-2.jpg";
 import afterImage from "../../Assets/imagens_isoframe/Vista-1.jpg";
-import instagramThumbOne from "../../Assets/imagens/imagem_010.jpg";
-import instagramThumbTwo from "../../Assets/imagens/imagem_011.jpg";
-import instagramThumbThree from "../../Assets/imagens/imagem_012.jpg";
 
 const categories = [
   { name: "Molduras externas", description: "Beirais, platibandas e acabamentos de fachada.", image: categoryExternal },
@@ -41,25 +37,30 @@ const products: Array<{ family: string; name: string; code: string; image: Stati
 ];
 
 const instagramReels = [
-  { number: "01", title: "Apresentação da Decorat", url: "https://www.instagram.com/reel/DW9-kGPBpSp/", image: instagramThumbOne },
-  { number: "02", title: "Informações para realizar o projeto", url: "https://www.instagram.com/reel/DWEmuqBx0GY/", image: instagramThumbTwo },
-  { number: "03", title: "Como é feita a moldura em EPS", url: "https://www.instagram.com/reel/DYiZfV7BYAj/", image: instagramThumbThree },
-  { number: "04", title: "Molduras resistentes na obra", url: "https://www.instagram.com/reel/DeIPml_uRYS/", image: instagramThumbOne },
-  { number: "05", title: "Resultado nível uau", url: "https://www.instagram.com/reel/DIPdWr8twuw/", image: instagramThumbTwo },
+  { number: "01", label: "PROJETOS REAIS", title: "Do projeto à execução.", url: "https://www.instagram.com/reel/DbD5LU4uIbR/" },
+  { number: "02", label: "DICAS TÉCNICAS", title: "O que a gente considera no seu projeto.", url: "https://www.instagram.com/reel/DeR411EBfWa/" },
+  { number: "03", label: "APLICAÇÕES EM OBRA", title: "Detalhes que valorizam o seu ambiente.", url: "https://www.instagram.com/reel/DeIPml_uRYS/" },
 ];
+
+const instagramPhonePosts = [categoryExternal, categoryBoiserie, categoryWindow, categoryPillar, categoryExternal, categoryWindow, categoryBoiserie, categoryPillar, categoryExternal];
+
+const instagramTopics = [
+  ["Projetos", "reais", House],
+  ["Aplicações", "em obra", Wrench],
+  ["Inspirações", "", Lightbulb],
+  ["Novidades e", "lançamentos", Layers3],
+] as const;
 
 const WHATSAPP_URL = createWhatsAppUrl();
 const INSTAGRAM_URL = siteConfig.instagramUrl;
 const ADDRESS_URL = siteConfig.addressUrl;
 
 const processSteps = [
-  ["01", "Primeiro contato", "Você envia projeto, fotos, referências ou medidas pelo WhatsApp.", FileText],
-  ["02", "Análise inicial", "Analisamos o material e preparamos o orçamento.", ScanLine],
-  ["03", "Medição e definição", "Conferimos medidas e ajudamos a definir as peças do projeto.", Ruler],
-  ["04", "Plano de corte", "Detalhamos peças e medidas para a última conferência.", FileText],
-  ["05", "Aprovação", "Após sua aprovação, liberamos as peças para o corte.", CheckCircle2],
-  ["06", "Produção", "Fabricamos as molduras personalizadas conforme o projeto aprovado.", Package],
-  ["07", "Aplicação e suporte", "A instalação é feita separadamente. Indicamos parceiros e oferecemos acompanhamento técnico adicional.", Wrench],
+  ["01", "Envie seu projeto", "Referências, fotos e medidas pelo WhatsApp.", FileText],
+  ["02", "Análise e medição", "Análise inicial e conferência em obra quando necessária.", ScanLine],
+  ["03", "Definição das molduras", "Ajustes e esboço técnico conforme o projeto.", Ruler],
+  ["04", "Plano de corte e aprovação", "Você revisa as peças e medidas antes da produção.", CheckCircle2],
+  ["05", "Produção", "A fabricação começa após a aprovação final.", Package],
 ] as const;
 
 const googleReviews = [
@@ -305,25 +306,23 @@ export default function Home() {
         <div className="hero-copy">
           <p>MOLDURAS ARQUITETÔNICAS EM EPS</p>
           <h1>Acabamento que transforma a <em>arquitetura.</em></h1>
-          <span>Molduras em EPS leves, resistentes e sob medida para fachadas e interiores. Mais beleza, valor e personalidade para o seu projeto.</span>
-          <div className="hero-actions"><button className="button-primary" type="button" onClick={openPreAttendance}>Enviar projeto <b>→</b></button><a className="hero-secondary" href="#catalogo">Explorar catálogo <b>→</b></a></div>
+          <span>Molduras arquitetônicas em EPS sob medida para fachadas e interiores — com fabricação especializada e envio para todo o Brasil.</span>
+          <div className="hero-actions"><button className="button-primary" type="button" onClick={openPreAttendance}>Solicitar orçamento <b>→</b></button><a className="hero-secondary" href="#catalogo">Explorar catálogo <b>→</b></a></div>
           <div className="hero-benefits"><span><Ruler /> <b>Sob medida</b><small>para o seu projeto</small></span><span><Truck /> <b>Envio para</b><small>todo o Brasil</small></span><span><ShieldCheck /> <b>Pronto para</b><small>aplicação na obra</small></span></div>
         </div>
         <div className="hero-photo"><Image src={heroImage} alt="Fachada residencial com molduras Decorat" fill priority sizes="70vw" /><div className="hero-callout">Detalhes<br />que valorizam<br />o seu projeto.<i /></div></div>
       </section>
 
       <section className="catalog section" id="catalogo">
-        <div className="catalog-heading"><p>CATÁLOGO</p><h2>Categorias para cada tipo de projeto.</h2><span>Cada linha resolve uma necessidade de obra, do beiral à peça exclusiva. Consulte modelos e medidas.</span></div>
-        <div className="category-grid">{visibleCategories.map((category) => <article className={`category-card${category.name === "Filetes e boiseries" ? " category-card-boiserie" : ""}`} key={category.name}><div className="category-image"><Image src={category.image} alt={category.name} fill loading="eager" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 46vw, 24vw" /></div><div className="category-content"><h3>{category.name}</h3><p>{category.description}</p><a href="#contato" aria-label={`Consultar ${category.name}`}>→</a></div></article>)}</div>
-        <div className="category-controls"><button type="button" onClick={() => setCategoryStart((current) => (current - 1 + categories.length) % categories.length)} aria-label="Categorias anteriores"><ChevronLeft /></button><button type="button" onClick={() => setCategoryStart((current) => (current + 1) % categories.length)} aria-label="Próximas categorias"><ChevronRight /></button></div>
+        <div className="catalog-heading"><p>CATÁLOGO</p><h2>Categorias para cada tipo de projeto.</h2><span>Cada linha resolve uma necessidade de obra, do beiral à peça exclusiva. Consulte modelos e medidas.</span><a className="catalog-direct" href="/catalogo">Ver catálogo completo <b>→</b></a></div>
+        <div className="category-grid">{visibleCategories.map((category) => <article className={`category-card${category.name === "Filetes e boiseries" ? " category-card-boiserie" : ""}`} key={category.name}><div className="category-image"><Image src={category.image} alt={category.name} fill loading="eager" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 46vw, 24vw" /></div><div className="category-content"><h3>{category.name}</h3><p>{category.description}</p><a href="/catalogo" aria-label={`Ver modelos de ${category.name}`}>Ver modelos <b>→</b></a></div></article>)}</div>
+        <div className="category-controls"><span className="category-progress" aria-live="polite">{categoryStart + 1} de {categories.length}</span><button type="button" onClick={() => setCategoryStart((current) => (current - 1 + categories.length) % categories.length)} aria-label="Categorias anteriores"><ChevronLeft /></button><button type="button" onClick={() => setCategoryStart((current) => (current + 1) % categories.length)} aria-label="Próximas categorias"><ChevronRight /></button></div>
       </section>
 
       <section className="products section">
-        <div className="section-title-row"><div><p>PEÇAS PREMIUM</p><h2>Perfis selecionados<br />para o seu projeto.</h2></div><a href="#catalogo-digital">Ver todo o catálogo <b>→</b></a></div>
-        <div className="product-grid">{products.map((product) => <article className="product-card" key={product.code}><div className="product-visual"><small>{product.family}</small><Image src={product.image} alt={product.name} fill sizes="(max-width: 767px) 45vw, 25vw" /></div><h3>{product.name}</h3><p>{product.code}</p><a href="#catalogo-digital">Ver detalhes <b>→</b></a></article>)}</div>
+        <div className="section-title-row"><div><p>PEÇAS PREMIUM</p><h2>Perfis selecionados<br />para o seu projeto.</h2></div><a href="/catalogo">Ver todo o catálogo <b>→</b></a></div>
+        <div className="product-grid">{products.map((product) => <article className="product-card" key={product.code}><div className="product-visual"><small>{product.family}</small><Image src={product.image} alt={product.name} fill sizes="(max-width: 767px) 45vw, 25vw" /></div><h3>{product.name}</h3><p>{product.code}</p><a href="/catalogo">Ver perfil e medidas <b>→</b></a></article>)}</div>
       </section>
-
-      <CatalogoDigital />
 
       <section className="about section" id="quem-somos">
         <div className="about-label"><p>QUEM SOMOS</p><span>Desde 2019</span></div>
@@ -335,8 +334,28 @@ export default function Home() {
         <div className="compare-frame" style={{ "--compare": `${compare}%` } as CSSProperties}><Image src={afterImage} alt="Fachada depois das molduras" fill sizes="60vw" /><div className="before-layer"><Image src={beforeImage} alt="Fachada antes das molduras" fill sizes="60vw" /></div><span className="before-label">Antes</span><span className="after-label">Depois</span><div className="compare-line" style={{ left: `${compare}%` }}><b><ChevronLeft /><ChevronRight /></b></div><input aria-label="Comparar antes e depois" type="range" min="0" max="100" value={compare} onChange={(event) => setCompare(Number(event.target.value))} /></div>
       </section>
 
+      <section className="eps-benefits section">
+        <div className="eps-benefits-inner">
+          <div className="eps-benefits-heading">
+            <p>MOLDURAS EM EPS</p>
+            <h2>Leveza, resistência e liberdade para criar.</h2>
+          </div>
+          <div className="eps-benefits-content">
+            <div className="eps-benefits-copy">
+              <p>As molduras em EPS permitem criar detalhes arquitetônicos com leveza, resistência e liberdade de formas.</p>
+              <p>Podem ser aplicadas em fachadas e interiores, valorizando elementos como janelas, portas, platibandas, beirais, colunas, marquises, volumes, ripados e outros detalhes do projeto.</p>
+            </div>
+            <ul className="eps-benefits-list">
+              {["Agilidade na construção", "Sustentabilidade ambiental", "Economia de materiais", "Flexibilidade arquitetônica", "Execução precisa de detalhes", "Durabilidade e estética"].map(benefit => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="process section" id="processo">
-        <div className="process-intro"><p>COMO FUNCIONA</p><h2>Do desenho à obra,<br /><em>sem complicação.</em></h2></div><div className="process-area"><span className="process-lead">Do primeiro contato à produção, cada detalhe é analisado e conferido antes do corte. Somente após sua aprovação iniciamos a produção.</span><div className="process-grid">{processSteps.map(([number, title, text, Icon]) => <article key={number} tabIndex={0} aria-label={`${number} ${title}`}><b>{number}</b><Icon /><h3>{title}</h3><p>{text}</p></article>)}</div><div className="project-help"><div><p>NÃO TEM PROJETO?</p><h3>A gente ajuda a definir.</h3><span>A partir de fotos, referências e ideias, podemos desenvolver esboços. Um projeto mais completo e profissional é contratado separadamente, com orçamento próprio.</span></div><div className="project-help-actions"><button className="button-primary" type="button" onClick={openPreAttendance}>Enviar projeto <b>→</b></button><button className="project-help-link" type="button" onClick={openPreAttendance}>Tenho apenas uma ideia <b>→</b></button></div></div></div>
+        <div className="process-intro"><p>COMO FUNCIONA</p><h2>Do primeiro contato à produção</h2></div><div className="process-area"><span className="process-lead"><strong>A produção só começa após a aprovação final do plano de corte.</strong></span><div className="process-grid">{processSteps.map(([number, title, text, Icon]) => <article key={number} tabIndex={0} aria-label={`${number} ${title}`}><b>{number}</b><Icon /><h3>{title}</h3><p>{text}</p></article>)}</div><div className="project-help"><div><p>NÃO TEM PROJETO?</p><h3>Não tem projeto? A gente ajuda.</h3><span>A partir das suas ideias, referências e fotos, podemos desenvolver esboços para ajudar na definição das molduras.<br/><br/>Quando necessário, também oferecemos projeto completo como serviço separado. O projeto possui orçamento próprio e deve ser aprovado e pago antes da elaboração do orçamento das molduras.</span></div><div className="project-help-actions"><button className="button-primary" type="button" onClick={openPreAttendance}>Já tenho meu projeto <b>→</b></button><button className="project-help-link" type="button" onClick={openPreAttendance}>Tenho apenas uma ideia <b>→</b></button></div></div></div>
       </section>
       <section className="technical"><div><ShieldCheck /><b>Leve e resistente</b><span>EPS revestido com argamassa para um acabamento durável.</span></div><div><Ruler /><b>Feito sob medida</b><span>Perfis e dimensões definidos conforme o seu projeto.</span></div><div><Wrench /><b>Pronto para aplicar</b><span>Peças para fachadas e interiores, com orientação de instalação.</span></div></section>
 
@@ -351,12 +370,25 @@ export default function Home() {
           <p>DECORAT NO INSTAGRAM</p>
           <h2>Inspirações reais para o seu <em>projeto.</em></h2>
           <span>Acompanhe a Decorat no Instagram e veja projetos, aplicações, novidades e inspirações em acabamentos que transformam ambientes.</span>
-          <div className="instagram-actions"><a className="button-primary" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramBrandIcon /> Seguir no Instagram <b>→</b></a><a className="instagram-more" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Ver mais posts <b>→</b></a></div>
+          <div className="instagram-actions"><a className="button-primary" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramBrandIcon /> Seguir no Instagram <b>→</b></a><a className="instagram-more" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Explorar conteúdos <b>→</b></a></div>
+          <div className="instagram-topics" aria-label="Conteúdos no Instagram">{instagramTopics.map(([lineOne, lineTwo, Icon]) => <div key={lineOne}><Icon aria-hidden="true" /><span>{lineOne}{lineTwo && <><br />{lineTwo}</>}</span></div>)}</div>
         </div>
-        <div className="instagram-reels">{instagramReels.map((reel) => <article className="instagram-reel" key={reel.number}><Image className="reel-fallback" src={reel.image} alt={reel.title} fill sizes="(max-width: 767px) 82vw, 22vw" loading="lazy" /><iframe src={`${reel.url}embed/`} title={`${reel.title} no Instagram`} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" /><a className="reel-open" href={reel.url} target="_blank" rel="noreferrer" aria-label={`Abrir ${reel.title} no Instagram`}><span className="reel-overlay">Abrir no Instagram <b>→</b></span></a><strong>{reel.title}</strong></article>)}</div>
+        <div className="instagram-showcase">
+          <a className="instagram-phone" href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Abrir perfil oficial da Decorat no Instagram">
+            <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
+            <div className="phone-profile-heading"><b>‹</b><strong>decorat.molduras</strong><b>•••</b></div>
+            <div className="phone-profile"><div className="phone-avatar"><Image src="/decorat-logo.png" alt="Logotipo Decorat" fill sizes="47px" /></div><div><b>548</b><small>publicações</small></div><div><b>8.027</b><small>seguidores</small></div><div><b>3.516</b><small>seguindo</small></div></div>
+            <div className="phone-bio"><strong>Fábrica de Molduras em Isopor</strong><span>Fabricação e instalação de Molduras em EPS Internas e Externas personalizadas 🧡<br />🚚 Enviamos para todo Brasil!</span><em>linktr.ee/decoratmolduras</em></div>
+            <div className="phone-highlights">{["Clientes", "Obras", "Curiosidades", "Quem Somos", "Localização"].map((label, index) => <span key={label}><Image src={instagramPhonePosts[index]} alt={`Destaque ${label} da Decorat`} fill sizes="44px" /> <b>{label}</b></span>)}</div>
+            <div className="phone-tabs"><b>▦</b><span>▣</span><span>♙</span></div>
+            <div className="phone-grid">{instagramPhonePosts.map((image, index) => <span key={index}><Image src={image} alt="Publicação Decorat" fill sizes="92px" /></span>)}</div>
+            <div className="phone-nav"><House /><span>⌕</span><b>＋</b><span>▣</span><span>◉</span></div>
+          </a>
+          <div className="instagram-reels">{instagramReels.map((reel) => <article className={`instagram-reel instagram-reel-${reel.number}`} key={reel.number} aria-label={`Reel oficial Decorat: ${reel.title}`}><iframe src={`${reel.url}embed/captioned/`} title={`Reel oficial da Decorat: ${reel.title}`} loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /><a className="reel-external-link" href={reel.url} target="_blank" rel="noreferrer">Abrir Reel oficial: {reel.title}</a></article>)}</div>
+        </div>
       </section>
 
-      <section className="final-cta" id="contato"><div><h2>Seu projeto merece um acabamento <em>à altura.</em></h2><p>Envie suas referências e receba uma orientação personalizada.</p></div><button className="button-primary" type="button" onClick={openPreAttendance}>Enviar projeto <b>→</b></button></section>
+      <section className="final-cta" id="contato"><div><h2>Vamos transformar seu projeto em realidade?</h2><p>Envie seu projeto, referências ou medidas para uma análise inicial.</p></div><button className="button-primary" type="button" onClick={openPreAttendance}>Solicitar orçamento <b>→</b></button></section>
       <SiteFooter />
       <button className="whatsapp" type="button" onClick={openPreAttendance} aria-label="Iniciar atendimento com a Decorat"><span>Entre em contato</span><b><WhatsAppBrandIcon /></b></button>
       <ExitIntentPopup onConversion={markExitConversion} />
