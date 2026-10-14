@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import aboutHeroImage from "../../../Assets/institucional/03-sobre-nos-clean.webp";
-import aboutProfileImage from "../../../Assets/institucional/05-andressa-moldura-clean.webp";
+import heroFacadeImage from "../../../Assets/institucional/10-fachada-contemporanea-clean.jpg";
+import architectImage from "../../../Assets/institucional/03-sobre-nos-clean.webp";
+import detailFacadeImage from "../../../Assets/institucional/09-detalhe-molduras-clean.jpg";
 
 export const metadata: Metadata = {
   title: "Quem somos",
@@ -14,176 +15,114 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main id="conteudo" tabIndex={-1} className="about-page">
+    <main id="conteudo" tabIndex={-1}>
       <SiteHeader active="about" />
 
-      {/* HERO SECTION */}
-      <section className="about-hero">
-        <div className="about-hero-content">
-          <div className="about-label">
-            <p>QUEM SOMOS</p>
-            <span>Desde 2019</span>
-          </div>
-          <div className="about-copy">
-            <h1>
-              Molduras começam<br />
-              no projeto, <em>não na produção.</em>
-            </h1>
-            <p>
-              Desde 2019, transformamos referências e projetos em molduras arquitetônicas para fachadas e interiores.
-            </p>
-            <p>
-              Nossa fábrica fica em Campo Grande, Mato Grosso do Sul, e atende projetos em todo o território nacional.
-            </p>
-            <p>
-              Cada peça nasce com atenção às proporções, medidas e detalhes que fazem o projeto funcionar na obra.
-            </p>
-            <Link className="button-primary" href="/contato">
-              Enviar projeto <b>→</b>
-            </Link>
+      {/* 1. Hero Quem Somos */}
+      <section className="hero" id="inicio">
+        <div className="hero-copy">
+          <p>QUEM SOMOS · DESDE 2019</p>
+          <h1>Molduras começam<br />no projeto, <em>não na produção.</em></h1>
+          <span>Desde 2019, a Decorat atua em Campo Grande, Mato Grosso do Sul, fabricando molduras externas e internas em EPS e atendendo projetos em todo o Brasil.<br/><br/>Produzimos soluções personalizadas de acordo com cada projeto, unindo arquitetura, fabricação e experiência para transformar referências e ideias em peças feitas sob medida.</span>
+          <div className="hero-actions">
+            <Link className="button-primary" href="/contato">Enviar projeto <b>→</b></Link>
           </div>
         </div>
-        <div className="about-hero-visual">
-          <Image src={aboutHeroImage} alt="Andressa Lubian na fábrica da Decorat com perfis de molduras em EPS" fill sizes="(max-width: 767px) 100vw, 45vw" priority />
+        <div className="hero-photo">
+          <Image src={heroFacadeImage} alt="Fachada contemporânea com molduras arquitetônicas Decorat" fill priority sizes="70vw" />
         </div>
       </section>
 
-      {/* STORY SECTION */}
-      <section className="about-story section">
-        <div className="about-story-grid">
-          <div className="about-story-heading">
-            <p className="about-kicker">NOSSA HISTÓRIA</p>
-            <h2>Uma história construída entre <em>arquitetura e produção.</em></h2>
-            <div className="about-facts">
-              <span>
-                <b>Desde 2019</b>
-                <small>Campo Grande — MS</small>
-              </span>
-              <span>
-                <b>Atendimento nacional</b>
-                <small>Envio para todo o Brasil</small>
-              </span>
-            </div>
-          </div>
-          <div className="about-story-text">
-            <p>
-              A Decorat fabrica molduras externas e internas em EPS e desenvolve soluções personalizadas conforme o projeto e a necessidade de cada cliente.
-            </p>
-            <p>
-              Durante os últimos anos da faculdade de Arquitetura, Andressa Lubian teve seu primeiro contato com esse universo por meio de um estágio. Depois da formação, antigos clientes continuaram procurando por esse tipo de solução.
-            </p>
-            <p>
-              Foi dessa oportunidade, junto com Thiago, que nasceu a Decorat. O que começou com experiência técnica e alguns projetos foi se transformando em uma fábrica especializada em molduras arquitetônicas personalizadas.
-            </p>
+      {/* 2. Nossa história */}
+      <section className="section" style={{ backgroundColor: 'var(--paper)' }}>
+        <div className="catalog-heading" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+          <p>NOSSA HISTÓRIA</p>
+          <h2 style={{ margin: '0 auto 24px' }}>Uma história construída<br />entre arquitetura e produção.</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '16px', lineHeight: 1.6, color: 'var(--ink)' }}>
+            <p>Nos últimos anos da faculdade de Arquitetura, Andressa Lubian teve seu primeiro contato com molduras em EPS durante um estágio.</p>
+            <p>Após sua formação, a empresa onde trabalhava encerrou suas atividades, mas muitos clientes continuaram procurando por esse tipo de solução.</p>
+            <p><strong>Em 2019, junto com Thiago, aquela experiência se transformou na Decorat.</strong> Desde então, a empresa une arquitetura, fabricação e experiência para desenvolver molduras personalizadas para cada projeto.</p>
           </div>
         </div>
       </section>
 
-      <section className="about-profile section" aria-labelledby="about-profile-title">
-        <div className="about-profile-visual">
-          <Image src={aboutProfileImage} alt="Andressa Lubian segurando uma moldura arquitetônica Decorat" fill sizes="(max-width: 767px) 100vw, 44vw" />
+      {/* 3. Andressa */}
+      <section className="section" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 5vw, 84px)', alignItems: 'center' }}>
+        <div style={{ position: 'relative', flex: '1 1 40%', minWidth: '300px', height: 'clamp(400px, 40vw, 600px)', overflow: 'hidden' }}>
+           <Image src={architectImage} alt="Andressa Lubian apresentando molduras em EPS" fill style={{ objectFit: 'cover' }} sizes="(max-width: 767px) 100vw, 50vw" />
         </div>
-        <div className="about-profile-copy">
-          <p className="about-kicker">ARQUITETURA PRÓXIMA DA FABRICAÇÃO</p>
-          <h2 id="about-profile-title">Decisões técnicas com olhar para o resultado final.</h2>
-          <p>
-            A presença da arquitetura dentro da fábrica aproxima intenção e execução. Antes da produção, referências, proporções e medidas são analisadas para que a solução faça sentido no conjunto da obra.
-          </p>
-          <p>
-            Esse acompanhamento orienta o desenvolvimento de perfis personalizados e deixa o processo mais claro para clientes, arquitetos e profissionais da construção.
-          </p>
+        <div className="process-intro" style={{ flex: '1 1 45%', minWidth: '300px' }}>
+          <p>ARQUITETURA DENTRO DA FÁBRICA</p>
+          <h2>O olhar de uma arquiteta<br /><em>em cada projeto.</em></h2>
+          <span className="process-lead" style={{ marginTop: '24px', display: 'block', fontSize: '15px', lineHeight: 1.6 }}>Andressa acompanha a análise dos projetos, medidas e detalhes antes da produção. Esse olhar aproxima intenção e execução e ajuda a garantir que cada peça faça sentido no conjunto da obra.</span>
+          
+          <blockquote style={{ marginTop: '34px', paddingLeft: '24px', borderLeft: '3px solid var(--orange)' }}>
+            <p style={{ fontSize: 'clamp(16px, 1.5vw, 19px)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--deep)' }}>“O objetivo não é simplesmente produzir uma moldura. É fazer com que aquilo que foi pensado no projeto funcione na obra.”</p>
+            <footer style={{ marginTop: '16px' }}>
+              <strong style={{ fontSize: '14px', color: 'var(--deep)' }}>Andressa Lubian</strong><br/>
+              <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Arquiteta e sócia da Decorat</span>
+            </footer>
+          </blockquote>
         </div>
       </section>
 
-      {/* DIFFERENTIAL SECTION */}
-      <section className="about-differential section">
-        <div className="about-differential-grid">
-          <div className="about-diff-main">
-            <p className="about-kicker">NOSSO DIFERENCIAL</p>
-            <h2>O olhar de uma arquiteta dentro da fábrica.</h2>
-            <p>
-              Na Decorat, o projeto não chega simplesmente para ser produzido. Cada trabalho passa por análise de medidas, proporções, referências e detalhes antes de chegar à fabricação.
-            </p>
-            <p>
-              Andressa acompanha de perto essa etapa, conectando o olhar arquitetônico ao processo produtivo para que cada peça faça sentido dentro do projeto.
-            </p>
-            <blockquote className="about-quote-box">
-              <p>“O objetivo não é simplesmente produzir uma moldura. É fazer com que aquilo que foi pensado no projeto funcione na obra.”</p>
-              <cite>Andressa Lubian · Arquitetura e direção de projetos</cite>
-            </blockquote>
+      {/* 4. Diferencial */}
+      <section className="section" style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '34px' }}>
+          <div style={{ paddingRight: '24px', borderRight: '1px solid var(--line)' }}>
+            <b style={{ display: 'block', color: 'var(--orange)', fontSize: '24px', marginBottom: '8px' }}>01</b>
+            <h3 style={{ fontSize: '16px', color: 'var(--deep)', fontWeight: 800, marginBottom: '6px' }}>Projeto</h3>
+            <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.5 }}>Entendemos referências, proporções e intenção.</p>
           </div>
-          <div className="about-pillars-column">
-            <div className="about-pillar-item">
-              <b>01</b>
-              <strong>Projeto</strong>
-              <span>Entendemos o que foi planejado.</span>
-            </div>
-            <div className="about-pillar-item">
-              <b>02</b>
-              <strong>Precisão</strong>
-              <span>Conferimos medidas e detalhes antes da produção.</span>
-            </div>
-            <div className="about-pillar-item">
-              <b>03</b>
-              <strong>Fabricação</strong>
-              <span>Transformamos o projeto em peças prontas.</span>
-            </div>
+          <div style={{ paddingRight: '24px', borderRight: '1px solid var(--line)' }}>
+            <b style={{ display: 'block', color: 'var(--orange)', fontSize: '24px', marginBottom: '8px' }}>02</b>
+            <h3 style={{ fontSize: '16px', color: 'var(--deep)', fontWeight: 800, marginBottom: '6px' }}>Precisão</h3>
+            <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.5 }}>Conferimos medidas e detalhes antes da produção.</p>
+          </div>
+          <div>
+            <b style={{ display: 'block', color: 'var(--orange)', fontSize: '24px', marginBottom: '8px' }}>03</b>
+            <h3 style={{ fontSize: '16px', color: 'var(--deep)', fontWeight: 800, marginBottom: '6px' }}>Fabricação</h3>
+            <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.5 }}>Transformamos o projeto em peças sob medida.</p>
           </div>
         </div>
       </section>
 
-      {/* PERSONALIZATION & PRODUCTION SECTION */}
-      <section className="about-production-block section">
-        <div className="about-production-grid">
-          <div className="about-prod-col">
-            <p className="about-kicker">CADA PROJETO PEDE UMA SOLUÇÃO DIFERENTE</p>
-            <h2>Personalização para fazer sentido no conjunto.</h2>
-            <p>
-              Não trabalhamos apenas com modelos prontos. Muitos projetos exigem ajustes de dimensões, proporções ou até o desenvolvimento de peças específicas.
-            </p>
-            <p>
-              Por isso, nossa produção permite trabalhar de forma personalizada, respeitando as necessidades de cada fachada, ambiente ou projeto arquitetônico.
-            </p>
-          </div>
-          <div className="about-prod-col">
-            <p className="about-kicker">ONDE PROJETO E FABRICAÇÃO SE ENCONTRAM</p>
-            <h2>Precisão antes do corte.</h2>
-            <p>
-              Por trás de cada peça existe um processo de conferência, preparação e produção. Antes do corte, medidas e detalhes são definidos e validados para reduzir erros e garantir mais segurança na fabricação.
-            </p>
-            <p>
-              Esse cuidado acompanha a Decorat desde o início: evoluir processos, melhorar a produção e entregar peças cada vez mais precisas.
-            </p>
+      {/* 5. Personalização */}
+      <section className="section" style={{ backgroundColor: 'var(--deep)', color: '#fff', textAlign: 'center' }}>
+        <div className="comparison-copy" style={{ padding: 0, margin: '0 auto', maxWidth: '800px' }}>
+          <p>PERSONALIZAÇÃO</p>
+          <h2 style={{ maxWidth: '100%', margin: '0 auto' }}>Personalização para fazer sentido no conjunto.</h2>
+          <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '16px', lineHeight: 1.6, color: 'rgba(255,255,255,0.85)' }}>
+            <p>Não trabalhamos apenas com modelos prontos.</p>
+            <p>As molduras podem ser adaptadas ou desenvolvidas conforme as necessidades do projeto arquitetônico, respeitando proporções, medidas e detalhes da obra.</p>
+            <p>Antes da produção, medidas e detalhes passam por conferência para reduzir erros e garantir segurança na fabricação.</p>
           </div>
         </div>
       </section>
 
-      {/* ROLE SECTION */}
-      <section className="about-role section">
-        <div className="about-role-container">
-          <p className="about-kicker">NOSSO PAPEL VAI ALÉM DE FABRICAR</p>
-          <h2>Orientação para o projeto seguir bem até a obra.</h2>
-          <div className="about-role-text">
-            <p>
-              Sabemos que o resultado final depende de diferentes etapas da obra. Por isso, mesmo sendo especialistas na fabricação das molduras, também orientamos nossos clientes durante o processo e, quando necessário, indicamos profissionais parceiros para instalação.
-            </p>
-            <p>
-              Para projetos que precisam de uma atenção adicional, também disponibilizamos acompanhamento técnico como serviço complementar.
-            </p>
+      {/* 6. Instalação e Suporte */}
+      <section className="section" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(40px, 5vw, 84px)', alignItems: 'center' }}>
+        <div className="process-intro" style={{ flex: '1 1 45%', minWidth: '300px' }}>
+          <p>INSTALAÇÃO E SUPORTE</p>
+          <h2>E depois que as molduras<br />ficam prontas?</h2>
+          <div className="process-lead" style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '15px', lineHeight: 1.6 }}>
+            <p>A Decorat é especializada na fabricação das molduras em EPS.</p>
+            <p>A instalação é realizada separadamente e pode ser executada por uma equipe parceira indicada pela Decorat, que já conhece nossos produtos e os cuidados necessários para aplicação.</p>
+            <p>Para projetos que precisam de acompanhamento adicional, também oferecemos acompanhamento técnico da instalação como serviço contratado à parte.</p>
           </div>
+        </div>
+        <div style={{ position: 'relative', flex: '1 1 40%', minWidth: '300px', height: 'clamp(300px, 30vw, 450px)', overflow: 'hidden' }}>
+           <Image src={detailFacadeImage} alt="Detalhe de moldura arquitetônica Decorat aplicada em fachada" fill style={{ objectFit: 'cover' }} sizes="(max-width: 767px) 100vw, 50vw" />
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
-      <section className="about-cta">
-        <div className="about-cta-content">
-          <p className="about-kicker">UM BOM RESULTADO COMEÇA ANTES DO CORTE</p>
-          <h2>Já tem um projeto, uma referência ou apenas uma ideia?</h2>
-          <span>Nossa equipe pode analisar e orientar sobre as possibilidades.</span>
+      {/* 7. CTA final */}
+      <section className="final-cta">
+        <div>
+          <h2>Vamos transformar seu projeto em realidade?</h2>
+          <p>Envie seu projeto, referências ou medidas para uma análise inicial.</p>
         </div>
-        <Link className="button-primary" href="/contato">
-          Enviar projeto <b>→</b>
-        </Link>
+        <Link className="button-primary" href="/contato">Enviar projeto <b>→</b></Link>
       </section>
 
       <SiteFooter />

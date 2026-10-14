@@ -8,7 +8,7 @@ export default function SiteFooter() {
     <footer>
       <div className="footer-main">
         <div className="footer-brand"><DecoratLogo /><p>Molduras arquitetônicas em EPS</p></div>
-        <nav aria-label="Navegação do rodapé"><Link href="/">Home</Link><Link href="/quem-somos">Quem somos</Link><Link href="/#catalogo-digital">Catálogo</Link><Link href="/contato">Contato</Link></nav>
+        <nav aria-label="Navegação do rodapé"><Link href="/">Home</Link><Link href="/quem-somos">Quem somos</Link><Link href="/molduras-em-eps">Molduras em EPS</Link><Link href="/catalogo">Catálogo</Link><Link href="/contato">Contato</Link></nav>
         <div className="footer-contact">
           <strong>Fale com a Decorat</strong><span>Envie suas dúvidas ou seu projeto.</span>
           <div className="footer-contact-links">

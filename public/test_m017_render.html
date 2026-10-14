@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M017 Render Tests</title>
+    <style>
+        body { margin: 0; display: flex; background: #fff; font-family: sans-serif; }
+        .container { flex: 1; display: flex; flex-direction: column; align-items: center; border-right: 1px solid #ddd; }
+        h2 { font-size: 16px; margin: 10px 0; color: #333; }
+        canvas { width: 500px; height: 500px; outline: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>A - Studio Architectural</h2>
+        <div id="canvas-a"></div>
+    </div>
+    <div class="container">
+        <h2>B - Premium Product</h2>
+        <div id="canvas-b"></div>
+    </div>
+    <div class="container">
+        <h2>C - Technical Realism</h2>
+        <div id="canvas-c"></div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // Load model once
+        const loader = new GLTFLoader();
+        let modelMesh = null;
+
+        loader.load('/catalogo/modelos/M017_fixed.glb', (gltf) => {
+            modelMesh = gltf.scene.children[0];
+            
+            // Common PBR Material for EPS
+            // Cor off-white próxima de #F5F3EE.
+            // Acabamento fosco, Rugosidade elevada, Reflexos discretos.
+            const epsMaterial = new THREE.MeshStandardMaterial({
+                color: 0xF5F3EE,
+                roughness: 0.9,
+                metalness: 0.05,
+                flatShading: false, // smooth normals
+            });
+
+            if(modelMesh.isMesh) {
+                modelMesh.material = epsMaterial;
+                modelMesh.geometry.computeVertexNormals();
+            } else {
+                modelMesh.traverse((c) => {
+                    if (c.isMesh) {
+                        c.material = epsMaterial;
+                        c.geometry.computeVertexNormals();
+                    }
+                });
+            }
+
+            initScene('canvas-a', 'A', modelMesh.clone());
+            initScene('canvas-b', 'B', modelMesh.clone());
+            initScene('canvas-c', 'C', modelMesh.clone());
+        });
+
+        function initScene(containerId, type, mesh) {
+            const container = document.getElementById(containerId);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(500, 500);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            // Shadow map config
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            // Tone mapping for realism
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+            container.appendChild(renderer.domElement);
+
+            const scene = new THREE.Scene();
+            // Optional: light gray background for previews
+            if(type === 'B') scene.background = new THREE.Color(0xf0f0f0);
+            
+            // Setup Camera
+            // Câmera ortográfica em perspectiva de três quartos (Orthographic or standard perspective, user said "Câmera ortográfica em perspectiva de três quartos" which technically means OrthographicCamera in isometric-like angle)
+            const frustumSize = 350;
+            const aspect = 1;
+            const camera = new THREE.OrthographicCamera(frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 0.1, 1500);
+            
+            // Position for 3/4 isometric
+            camera.position.set(300, 200, 300);
+            camera.lookAt(0, 0, 0);
+            
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.target.set(0,0,0);
+
+            // Add mesh
+            scene.add(mesh);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+
+            // Optional ground plane for shadows
+            const groundGeo = new THREE.PlaneGeometry(1000, 1000);
+            const groundMat = new THREE.ShadowMaterial({ opacity: 0.15 });
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -60; // adjust based on mesh height
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            // Setup Lighting based on type
+            setupLighting(scene, type);
+
+            // Render loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        function setupLighting(scene, type) {
+            const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+            scene.add(ambient);
+
+            if (type === 'A') {
+                // Studio Architectural: render de produto em fundo neutro, iluminação suave
+                const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+                scene.add(hemiLight);
+                
+                const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                keyLight.position.set(100, 150, 100);
+                keyLight.castShadow = true;
+                scene.add(keyLight);
+            } 
+            else if (type === 'B') {
+                // Premium Product: relevos mais evidentes por iluminação direcional, sombras controladas e câmera comercial.
+                const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+                keyLight.position.set(100, 200, -50);
+                keyLight.castShadow = true;
+                keyLight.shadow.bias = -0.001;
+                keyLight.shadow.mapSize.width = 2048;
+                keyLight.shadow.mapSize.height = 2048;
+                scene.add(keyLight);
+
+                const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+                fillLight.position.set(-100, 50, 100);
+                scene.add(fillLight);
+                
+                const rimLight = new THREE.DirectionalLight(0xffffff, 0.6);
+                rimLight.position.set(-100, 100, -100);
+                scene.add(rimLight);
+            }
+            else if (type === 'C') {
+                // Technical Realism: apresentação realista com perfil transversal destacado
+                const hemiLight = new THREE.HemisphereLight(0xffffff, 0x888888, 0.6);
+                scene.add(hemiLight);
+                
+                const keyLight = new THREE.PointLight(0xffffff, 1.0, 1000);
+                keyLight.position.set(50, 100, 200); // Focus on the transversal profile
+                keyLight.castShadow = true;
+                scene.add(keyLight);
+                
+                const backLight = new THREE.DirectionalLight(0xffffff, 0.3);
+                backLight.position.set(0, 100, -200);
+                scene.add(backLight);
+            }
+        }
+    </script>
+</body>
+</html>

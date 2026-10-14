@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Box, Filter, Ruler, Search } from "lucide-react";
+import { ArrowUpRight, Box, Ruler, Search } from "lucide-react";
 import catalogDataRaw from "@/data/catalogo.json";
 import { createWhatsAppUrl } from "@/config/site";
 import MolduraModal, { ProductItem } from "./MolduraModal";
@@ -11,19 +11,26 @@ const catalogData = catalogDataRaw as ProductItem[];
 
 export default function CatalogoDigital() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterValidation, setFilterValidation] = useState<"all" | "validado">("all");
+  const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [visibleCount, setVisibleCount] = useState(12);
+
+  const filterCategories = ["Todos", "Molduras externas", "Filetes", "Guarnições", "Sancas", "Pilares", "Internos", "Personalizados"];
 
   const filteredProducts = useMemo(() => {
     return catalogData.filter((item) => {
       const matchesSearch =
         item.codigo.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
         item.nome.toLowerCase().includes(searchTerm.toLowerCase().trim());
-      const matchesValidation = filterValidation === "all" || item.status_validacao === "validado";
-      return matchesSearch && matchesValidation;
+      // For now, if activeCategory is not Todos, we can match it against category or name
+      let matchesCategory = true;
+      if (activeCategory !== "Todos") {
+         matchesCategory = item.categoria?.toLowerCase().includes(activeCategory.toLowerCase()) || item.nome?.toLowerCase().includes(activeCategory.toLowerCase());
+         if (activeCategory === "Molduras externas") matchesCategory = true; // Fallback since all are EPS
+      }
+      return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, filterValidation]);
+  }, [searchTerm, activeCategory]);
 
   const displayedProducts = useMemo(() => {
     return filteredProducts.slice(0, visibleCount);
@@ -69,24 +76,26 @@ export default function CatalogoDigital() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-
-              <button
-                onClick={() => setFilterValidation(filterValidation === "all" ? "validado" : "all")}
-                className={`catalogo-filter-btn ${filterValidation === "validado" ? "active" : ""}`}
-              >
-                <Filter style={{ width: 14, height: 14 }} />
-                <span>{filterValidation === "validado" ? "Homologados" : "Todos os perfis"}</span>
-              </button>
             </div>
           </div>
+        </div>
+
+        {/* Categories Filter */}
+        <div className="catalogo-categories-filter">
+          {filterCategories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`catalogo-category-btn ${activeCategory === cat ? 'active' : ''}`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Counter Info */}
         <div className="catalogo-meta-bar">
           <span><strong>{displayedProducts.length}</strong> de {filteredProducts.length} perfis exibidos</span>
-          {filterValidation === "validado" && (
-            <span className="catalogo-validation-note">● Protótipos homologados</span>
-          )}
         </div>
 
         {/* Product Cards Grid */}

@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 import { DecoratLogo, InstagramBrandIcon } from "./BrandIcons";
 
 type SiteHeaderProps = {
-  active?: "home" | "about" | "contact";
+  active?: "home" | "about" | "contact" | "catalogo" | "molduras-em-eps";
   ctaHref?: string;
   onCtaClick?: () => void;
   externalCta?: boolean;
@@ -71,7 +71,8 @@ export default function SiteHeader({ active, ctaHref = "/contato", onCtaClick, e
         <nav aria-label="Navegação principal">
           <Link className={active === "home" ? "active" : undefined} aria-current={active === "home" ? "page" : undefined} href="/">Home</Link>
           <Link className={active === "about" ? "active" : undefined} aria-current={active === "about" ? "page" : undefined} href="/quem-somos">Quem somos</Link>
-          <Link href="/#catalogo-digital">Catálogo</Link>
+          <Link className={active === "molduras-em-eps" ? "active" : undefined} aria-current={active === "molduras-em-eps" ? "page" : undefined} href="/molduras-em-eps">Molduras em EPS</Link>
+          <Link className={active === "catalogo" ? "active" : undefined} aria-current={active === "catalogo" ? "page" : undefined} href="/catalogo">Catálogo</Link>
           <Link className={active === "contact" ? "active" : undefined} aria-current={active === "contact" ? "page" : undefined} href="/contato">Contato</Link>
         </nav>
         <div className="header-actions">
@@ -83,7 +84,8 @@ export default function SiteHeader({ active, ctaHref = "/contato", onCtaClick, e
           <nav aria-label="Navegação mobile">
             <Link aria-current={active === "home" ? "page" : undefined} href="/" onClick={closeMenu}>Home</Link>
             <Link aria-current={active === "about" ? "page" : undefined} href="/quem-somos" onClick={closeMenu}>Quem somos</Link>
-            <Link href="/#catalogo-digital" onClick={closeMenu}>Catálogo</Link>
+            <Link aria-current={active === "molduras-em-eps" ? "page" : undefined} href="/molduras-em-eps" onClick={closeMenu}>Molduras em EPS</Link>
+            <Link aria-current={active === "catalogo" ? "page" : undefined} href="/catalogo" onClick={closeMenu}>Catálogo</Link>
             <Link aria-current={active === "contact" ? "page" : undefined} href="/contato" onClick={closeMenu}>Contato</Link>
           </nav>
           <a className="mobile-instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer"><InstagramBrandIcon /> @decorat.molduras</a>

@@ -2,16 +2,12 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
-import { X, Box, FileText, ZoomIn, MoveVertical, MoveHorizontal, Layers, Ruler, Download, Maximize2, Minimize2, ChevronDown } from "lucide-react";
+import { ChevronDown, Maximize2, Minimize2, X } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const Moldura3DViewer = dynamic(() => import("./Moldura3DViewer"), {
   ssr: false,
-  loading: () => (
-    <div style={{ width: "100%", height: 340, background: "#f8f9fa", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 12 }}>
-      <span style={{ fontSize: 13, color: "var(--deep)", fontWeight: 600 }}>Carregando ambiente 3D...</span>
-    </div>
-  ),
+  loading: () => <div className="moldura-3d-loading"><span>Preparando o visualizador 3D…</span></div>,
 });
 
 export interface ProductItem {
@@ -86,16 +82,16 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModalProps) {
+export default function MolduraModal({ product, onClose, onSelectWhatsApp }: MolduraModalProps) {
   const [view, setView] = useState<"3d" | "render">("3d");
   const [showTechnical, setShowTechnical] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-
   const visualRef = useRef<HTMLElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const technicalId = `decorat-${product?.codigo ?? "product"}-technical`;
 
-  useDialogInteraction(true, onClose, dialogRef, closeRef);
+  useDialogInteraction(Boolean(product), onClose, dialogRef, closeRef);
 
   useEffect(() => {
     const updateFullscreenState = () => setIsFullscreen(document.fullscreenElement === visualRef.current);
@@ -103,26 +99,22 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
     return () => document.removeEventListener("fullscreenchange", updateFullscreenState);
   }, []);
 
+  if (!product) return null;
+
   const toggleFullscreen = async () => {
     const visual = visualRef.current;
     if (!visual) return;
-
-    if (document.fullscreenElement) {
-      await document.exitFullscreen?.();
-    } else if (visual.requestFullscreen) {
-      await visual.requestFullscreen();
-    }
+    if (document.fullscreenElement) await document.exitFullscreen?.();
+    else await visual.requestFullscreen?.();
   };
-
-  if (!product) return null;
 
   return (
     <div className="decorat-m001-backdrop" onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <div ref={dialogRef} className={`decorat-m001-showroom ${isFullscreen ? "is-fullscreen" : ""}`} role="dialog" aria-modal="true" aria-labelledby="decorat-m001-title" aria-describedby="decorat-m001-description">
+      <div ref={dialogRef} className={`decorat-m001-showroom ${isFullscreen ? "is-fullscreen" : ""}`} role="dialog" aria-modal="true" aria-labelledby="decorat-showroom-title" aria-describedby="decorat-showroom-description">
         <section className="decorat-m001-visual" ref={visualRef}>
           <div className="decorat-m001-visual-meta">
             <span>CATÁLOGO DECORAT</span>
-            <span>M001 · PERFIL ARQUITETÔNICO</span>
+            <span>{product.codigo} · {product.categoria}</span>
           </div>
 
           <button ref={closeRef} type="button" onClick={onClose} className="decorat-m001-close" aria-label="Fechar showroom" title="Fechar showroom">
@@ -135,8 +127,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
                 glbUrl={product.modelo3d}
                 heightMm={product.altura_mm}
                 widthMm={product.largura_mm}
-                fitFactor={0.76}
-                mobileFitFactor={0.58}
+                fitFactor={1.02}
+                mobileFitFactor={1.14}
                 showHint={false}
               />
             ) : (
@@ -149,7 +141,7 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
               {view === "3d" && <span>Arraste para girar · role para aproximar</span>}
               <div className="decorat-m001-view-controls">
                 <button type="button" className={view === "3d" ? "active" : ""} onClick={() => setView("3d")} aria-pressed={view === "3d"}>3D interativo</button>
-                <button type="button" className={view === "render" ? "active" : ""} onClick={() => setView("render")} aria-pressed={view === "render"} title="Ver render estático">Imagem</button>
+                <button type="button" className={view === "render" ? "active" : ""} onClick={() => setView("render")} aria-pressed={view === "render"}>Imagem</button>
                 <button type="button" onClick={toggleFullscreen} aria-label={isFullscreen ? "Sair da tela cheia" : "Abrir tela cheia"} title={isFullscreen ? "Sair da tela cheia" : "Expandir visual"}>
                   {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
                 </button>
@@ -162,10 +154,8 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
           <div className="decorat-m001-info-body">
             <div className="decorat-m001-info-kicker"><span /> {product.categoria}</div>
             <p className="decorat-m001-code">{product.codigo}</p>
-            <h2 id="decorat-m001-title">Moldura <em>{product.codigo}</em></h2>
-            <p id="decorat-m001-description" className="decorat-m001-description">
-              Perfil arquitetônico em EPS para fachadas com acabamento preciso, leveza e presença.
-            </p>
+            <h2 id="decorat-showroom-title">Moldura <em>{product.codigo}</em></h2>
+            <p id="decorat-showroom-description" className="decorat-m001-description">Perfil arquitetônico em EPS para fachadas com acabamento preciso, leveza e presença.</p>
 
             <div className="decorat-m001-dimensions">
               <span>DIMENSÕES CONFIRMADAS</span>
@@ -181,13 +171,13 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
               <WhatsAppIcon size={20} />
             </button>
 
-            <button type="button" className="decorat-m001-technical-toggle" onClick={() => setShowTechnical((current) => !current)} aria-expanded={showTechnical} aria-controls="decorat-m001-technical">
+            <button type="button" className="decorat-m001-technical-toggle" onClick={() => setShowTechnical((current) => !current)} aria-expanded={showTechnical} aria-controls={technicalId}>
               <span>{showTechnical ? "Ocultar informações técnicas" : "Ver informações técnicas"}</span>
               <ChevronDown size={16} className={showTechnical ? "rotated" : ""} />
             </button>
 
             {showTechnical && (
-              <div id="decorat-m001-technical" className="decorat-m001-technical" role="region" aria-label="Informações técnicas">
+              <div id={technicalId} className="decorat-m001-technical" role="region" aria-label="Informações técnicas">
                 <div><span>Material</span><strong>EPS revestido Decorat</strong></div>
                 <div><span>Comprimento padrão</span><strong>2,00 metros</strong></div>
               </div>
@@ -199,221 +189,6 @@ function PremiumM001Showroom({ product, onClose, onSelectWhatsApp }: MolduraModa
             <span>Campo Grande · MS</span>
           </div>
         </aside>
-      </div>
-    </div>
-  );
-}
-
-export default function MolduraModal({ product, onClose, onSelectWhatsApp }: MolduraModalProps) {
-  const [activeTab, setActiveTab] = useState<"render" | "perfil" | "3d">("render");
-  const [zoom, setZoom] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-
-  useDialogInteraction(Boolean(product) && product?.codigo !== "M001", onClose, dialogRef, closeRef);
-
-  if (!product) return null;
-
-  if (product.codigo === "M001") {
-    return <PremiumM001Showroom product={product} onClose={onClose} onSelectWhatsApp={onSelectWhatsApp} />;
-  }
-
-  return (
-    <div className="catalogo-modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div ref={dialogRef} className="catalogo-modal-card" role="dialog" aria-modal="true" aria-labelledby="catalogo-modal-title">
-        
-        {/* Close Button */}
-        <button ref={closeRef} type="button" onClick={onClose} className="catalogo-modal-close" aria-label="Fechar modal" title="Fechar modal">
-          <X style={{ width: 18, height: 18 }} />
-        </button>
-
-        {/* Left Side: Viewer */}
-        <div className="catalogo-modal-left">
-          
-          {/* Tab Selector */}
-          <div className="catalogo-modal-tabs">
-            <button
-              onClick={() => setActiveTab("render")}
-              className={`catalogo-modal-tab-btn ${activeTab === "render" ? "active" : ""}`}
-              aria-pressed={activeTab === "render"}
-            >
-              <FileText style={{ width: 14, height: 14 }} />
-              <span>Render 3D</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("perfil")}
-              className={`catalogo-modal-tab-btn ${activeTab === "perfil" ? "active" : ""}`}
-              aria-pressed={activeTab === "perfil"}
-            >
-              <FileText style={{ width: 14, height: 14 }} />
-              <span>Corte Técnico</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("3d")}
-              className={`catalogo-modal-tab-btn ${activeTab === "3d" ? "active-3d" : ""}`}
-              aria-pressed={activeTab === "3d"}
-            >
-              <Box style={{ width: 14, height: 14 }} />
-              <span>3D Interativo</span>
-            </button>
-          </div>
-
-          {/* Main Visual Content */}
-          <div className="catalogo-modal-viewer-area">
-            {activeTab === "render" && (
-              <div style={{ position: "relative", width: "100%", height: 320, display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, #f0eee6 0%, #e0ddd3 100%)", borderRadius: 12, overflow: "hidden" }}>
-                <Image
-                  src={product.imagem}
-                  alt={product.nome}
-                  fill
-                  style={{
-                    objectFit: "contain",
-                    transform: zoom ? "scale(1.25)" : "scale(1)",
-                    transition: "transform 0.3s ease"
-                  }}
-                  sizes="400px"
-                />
-                <button
-                  onClick={() => setZoom(!zoom)}
-                  style={{
-                    position: "absolute",
-                    bottom: 8,
-                    left: 8,
-                    padding: "6px 12px",
-                    background: "rgba(255,255,255,0.9)",
-                    borderRadius: 8,
-                    border: "1px solid var(--line)",
-                    fontSize: 11,
-                    color: "var(--deep)",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4
-                  }}
-                >
-                  <ZoomIn style={{ width: 14, height: 14 }} />
-                  <span>{zoom ? "Reduzir" : "Ampliar"}</span>
-                </button>
-              </div>
-            )}
-
-            {activeTab === "perfil" && (
-              <div style={{ width: "100%", height: 320, background: "#ffffff", borderRadius: 12, border: "1px solid var(--line)", padding: 24, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ position: "relative", width: 180, height: 180, marginBottom: 12 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={product.perfil}
-                    alt={`Perfil técnico ${product.codigo}`}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: 12, fontWeight: 700, color: "var(--deep)" }}>Seção Transversal do Perfil</p>
-                  <span style={{ fontSize: 11, color: "var(--muted)" }}>Geometria vetorizada original EPS</span>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "3d" && (
-              <div style={{ width: "100%", height: "100%" }}>
-                <Moldura3DViewer
-                  glbUrl={product.modelo3d}
-                  heightMm={product.altura_mm}
-                  widthMm={product.largura_mm}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Right Side: Info & Actions */}
-        <div className="catalogo-modal-right">
-          <div>
-            <span className="catalogo-modal-tag">
-              MOLDURA EPS DECORAT
-            </span>
-
-            <h2 id="catalogo-modal-title" className="catalogo-modal-title">Moldura {product.codigo}</h2>
-            <p className="catalogo-modal-desc">
-              Moldura arquitetônica em EPS de alta densidade, leve, durável e pronta para aplicação e acabamento em fachada ou ambiente interno.
-            </p>
-
-            <div className="catalogo-modal-specs-box">
-              <h4 style={{ textTransform: "uppercase", fontSize: 12, fontWeight: 700, letterSpacing: 0.5, color: "var(--deep)", marginBottom: 16 }}>Especificações Técnicas</h4>
-              <div className="catalogo-modal-specs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px 16px" }}>
-                
-                <div className="catalogo-spec-item" style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <MoveVertical style={{ width: 20, height: 20, color: "var(--deep)", flexShrink: 0, marginTop: 2 }} />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Altura do Perfil</span>
-                    <strong style={{ fontSize: 15, color: "var(--deep)" }}>{product.altura_mm ? `${product.altura_mm} mm` : "Sob consulta"}</strong>
-                  </div>
-                </div>
-
-                <div className="catalogo-spec-item" style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <MoveHorizontal style={{ width: 20, height: 20, color: "var(--deep)", flexShrink: 0, marginTop: 2 }} />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Projeção</span>
-                    <strong style={{ fontSize: 15, color: "var(--deep)" }}>{product.largura_mm ? `${product.largura_mm} mm` : "Sob consulta"}</strong>
-                  </div>
-                </div>
-
-                <div className="catalogo-spec-item" style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <Layers style={{ width: 20, height: 20, color: "var(--deep)", flexShrink: 0, marginTop: 2 }} />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Material</span>
-                    <strong style={{ fontSize: 13, color: "var(--deep)" }}>EPS Revestido Decorat</strong>
-                  </div>
-                </div>
-
-                <div className="catalogo-spec-item" style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <Ruler style={{ width: 20, height: 20, color: "var(--deep)", flexShrink: 0, marginTop: 2 }} />
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 11, color: "var(--muted)" }}>Comprimento Padrão</span>
-                    <strong style={{ fontSize: 13, color: "var(--deep)" }}>2,00 metros</strong>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
-            <button
-              onClick={() => onSelectWhatsApp(product)}
-              className="catalogo-whatsapp-cta"
-            >
-              <WhatsAppIcon size={19} />
-              <span>Solicitar Orçamento no WhatsApp</span>
-            </button>
-            
-            <button
-              style={{
-                width: "100%",
-                padding: "14px 24px",
-                background: "#ffffff",
-                border: "1px solid var(--line)",
-                borderRadius: 8,
-                color: "var(--deep)",
-                fontWeight: 600,
-                fontSize: 14,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8,
-                cursor: "pointer",
-                transition: "all 0.2s ease"
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "#f8f9fa"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "#ffffff"}
-            >
-              <Download style={{ width: 16, height: 16 }} />
-              <span>Baixar ficha técnica (PDF)</span>
-            </button>
-          </div>
-
-        </div>
-
       </div>
     </div>
   );

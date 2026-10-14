@@ -1,0 +1,35 @@
+[
+  {
+    "codigo": "M001",
+    "nome": "Moldura M001",
+    "categoria": "Moldura Arquitetônica",
+    "altura_mm": 197,
+    "largura_mm": 50,
+    "imagem": "/catalogo/produtos/M001.webp",
+    "perfil": "/catalogo/perfis/M001.svg",
+    "modelo3d": "/catalogo/modelos/M001.glb",
+    "status_validacao": "validado"
+  },
+  {
+    "codigo": "M002",
+    "nome": "Moldura M002",
+    "categoria": "Moldura Arquitetônica",
+    "altura_mm": 111,
+    "largura_mm": 57,
+    "imagem": "/catalogo/produtos/M002.webp",
+    "perfil": "/catalogo/perfis/M002.svg",
+    "modelo3d": "/catalogo/modelos/M002.glb",
+    "status_validacao": "validado"
+  },
+  {
+    "codigo": "M005",
+    "nome": "Moldura M005",
+    "categoria": "Moldura Arquitetônica",
+    "altura_mm": 199,
+    "largura_mm": 36,
+    "imagem": "/catalogo/produtos/M005.webp",
+    "perfil": "/catalogo/perfis/M005.svg",
+    "modelo3d": "/catalogo/modelos/M005.glb",
+    "status_validacao": "validado"
+  }
+]

@@ -18,6 +18,7 @@
     "puppeteer": "^25.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-social-media-embed": "^2.5.18",
     "tailwindcss": "^4.1.14",
     "three": "^0.186.1"
   },

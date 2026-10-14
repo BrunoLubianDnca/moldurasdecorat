@@ -1,10 +1,12 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
-import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench, House, Lightbulb, Layers3 } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench, House, Lightbulb, Layers3, Pause, Play } from "lucide-react";
 import { InstagramBrandIcon, WhatsAppBrandIcon } from "@/components/BrandIcons";
+import InstagramProfileMockup from "@/components/InstagramProfileMockup";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { createWhatsAppUrl, siteConfig } from "@/config/site";
@@ -20,6 +22,11 @@ import productPilar from "../../Assets/peças/Pilar Decorativo — PI00380.png";
 import productFilete from "../../Assets/peças/Filete Externo — FI00215.png";
 import beforeImage from "../../Assets/imagens_isoframe/Vista-2.jpg";
 import afterImage from "../../Assets/imagens_isoframe/Vista-1.jpg";
+
+const InstagramEmbed = dynamic(
+  () => import("react-social-media-embed").then((module) => module.InstagramEmbed),
+  { ssr: false, loading: () => <div className="instagram-embed-loading" aria-hidden="true" /> },
+);
 
 const categories = [
   { name: "Molduras externas", description: "Beirais, platibandas e acabamentos de fachada.", image: categoryExternal },
@@ -37,9 +44,11 @@ const products: Array<{ family: string; name: string; code: string; image: Stati
 ];
 
 const instagramReels = [
-  { number: "01", label: "PROJETOS REAIS", title: "Do projeto à execução.", url: "https://www.instagram.com/reel/DbD5LU4uIbR/" },
-  { number: "02", label: "DICAS TÉCNICAS", title: "O que a gente considera no seu projeto.", url: "https://www.instagram.com/reel/DeR411EBfWa/" },
-  { number: "03", label: "APLICAÇÕES EM OBRA", title: "Detalhes que valorizam o seu ambiente.", url: "https://www.instagram.com/reel/DeIPml_uRYS/" },
+  { number: "01", url: "https://www.instagram.com/reel/DbD5LU4uIbR/" },
+  { number: "02", url: "https://www.instagram.com/reel/DeR411EBfWa/" },
+  { number: "03", url: "https://www.instagram.com/reel/DeIPml_uRYS/" },
+  { number: "04", url: "https://www.instagram.com/reel/DdCB94LBM5j/" },
+  { number: "05", url: "https://www.instagram.com/reel/DcjyKvphDB1/" },
 ];
 
 const instagramPhonePosts = [categoryExternal, categoryBoiserie, categoryWindow, categoryPillar, categoryExternal, categoryWindow, categoryBoiserie, categoryPillar, categoryExternal];
@@ -209,6 +218,8 @@ function GoogleIcon() {
 export default function Home() {
   const [compare, setCompare] = useState(53);
   const [categoryStart, setCategoryStart] = useState(0);
+  const [categoryPaused, setCategoryPaused] = useState(false);
+  const [categoryInteractionPaused, setCategoryInteractionPaused] = useState(false);
   const [preAttendanceOpen, setPreAttendanceOpen] = useState(false);
   const [attendanceStep, setAttendanceStep] = useState(0);
   const [visitorName, setVisitorName] = useState("");
@@ -216,21 +227,41 @@ export default function Home() {
   const [customInterest, setCustomInterest] = useState("");
   const [projectContext, setProjectContext] = useState("");
   const [whatsappCountdown, setWhatsappCountdown] = useState<number | null>(null);
+  const [activeInstagramReel, setActiveInstagramReel] = useState(0);
+  const [catalogLeadName, setCatalogLeadName] = useState("");
+  const [catalogLeadEmail, setCatalogLeadEmail] = useState("");
+  const [catalogLeadStatus, setCatalogLeadStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const attendancePanelRef = useRef<HTMLElement>(null);
   const attendanceLastFocusedElement = useRef<HTMLElement | null>(null);
   const visibleCategories = Array.from({ length: 4 }, (_, index) => categories[(categoryStart + index) % categories.length]);
   const markExitConversion = useCallback(() => window.sessionStorage.setItem(exitIntentStorageKey, "true"), []);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const initialPreferenceTimer = window.setTimeout(() => {
+      if (reducedMotionQuery.matches) setCategoryPaused(true);
+    }, 0);
+
+    const handleReducedMotionChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setCategoryPaused(true);
+    };
+
+    reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+    return () => {
+      window.clearTimeout(initialPreferenceTimer);
+      reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (categoryPaused || categoryInteractionPaused) return;
 
     const categoryTimer = window.setInterval(() => {
       setCategoryStart((current) => (current + 1) % categories.length);
     }, 5000);
 
     return () => window.clearInterval(categoryTimer);
-  }, [categoryStart]);
+  }, [categoryInteractionPaused, categoryPaused]);
 
   useEffect(() => {
     if (!preAttendanceOpen) return;
@@ -275,6 +306,31 @@ export default function Home() {
   const whatsappMessage = `Olá, sou ${visitorName}. Estou buscando ${selectedInterest.toLowerCase()} para o meu projeto. ${projectContext}. Gostaria de falar com um especialista da Decorat.`;
   const whatsappPreAttendanceUrl = `${WHATSAPP_URL}&text=${encodeURIComponent(whatsappMessage)}`;
 
+  const submitCatalogLead = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const name = catalogLeadName.trim();
+    const email = catalogLeadEmail.trim().toLowerCase();
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (name.length < 2 || !validEmail) {
+      setCatalogLeadStatus("error");
+      return;
+    }
+
+    setCatalogLeadStatus("loading");
+    const leadMessage = `Olá! Meu nome é ${name} e baixei o catálogo digital da Decorat. Meu e-mail é ${email}. Gostaria de receber mais informações.`;
+    const whatsappWindow = window.open(createWhatsAppUrl(leadMessage), "_blank");
+    if (whatsappWindow) whatsappWindow.opener = null;
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = "/catalogo-decorat.pdf";
+    downloadLink.download = "Catalogo-Decorat.pdf";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.remove();
+    setCatalogLeadStatus("success");
+  };
+
   useEffect(() => {
     if (attendanceStep !== 3 || whatsappCountdown === null) return;
     if (whatsappCountdown <= 1) {
@@ -313,20 +369,27 @@ export default function Home() {
         <div className="hero-photo"><Image src={heroImage} alt="Fachada residencial com molduras Decorat" fill priority sizes="70vw" /><div className="hero-callout">Detalhes<br />que valorizam<br />o seu projeto.<i /></div></div>
       </section>
 
-      <section className="catalog section" id="catalogo">
+      <section
+        className="catalog section"
+        id="catalogo"
+        onMouseEnter={() => setCategoryInteractionPaused(true)}
+        onMouseLeave={() => setCategoryInteractionPaused(false)}
+        onFocusCapture={() => setCategoryInteractionPaused(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setCategoryInteractionPaused(false);
+        }}
+        onPointerDown={(event) => { if (event.pointerType !== "mouse") setCategoryInteractionPaused(true); }}
+        onPointerUp={(event) => { if (event.pointerType !== "mouse") setCategoryInteractionPaused(false); }}
+        onPointerCancel={(event) => { if (event.pointerType !== "mouse") setCategoryInteractionPaused(false); }}
+      >
         <div className="catalog-heading"><p>CATÁLOGO</p><h2>Categorias para cada tipo de projeto.</h2><span>Cada linha resolve uma necessidade de obra, do beiral à peça exclusiva. Consulte modelos e medidas.</span><a className="catalog-direct" href="/catalogo">Ver catálogo completo <b>→</b></a></div>
-        <div className="category-grid">{visibleCategories.map((category) => <article className={`category-card${category.name === "Filetes e boiseries" ? " category-card-boiserie" : ""}`} key={category.name}><div className="category-image"><Image src={category.image} alt={category.name} fill loading="eager" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 46vw, 24vw" /></div><div className="category-content"><h3>{category.name}</h3><p>{category.description}</p><a href="/catalogo" aria-label={`Ver modelos de ${category.name}`}>Ver modelos <b>→</b></a></div></article>)}</div>
-        <div className="category-controls"><span className="category-progress" aria-live="polite">{categoryStart + 1} de {categories.length}</span><button type="button" onClick={() => setCategoryStart((current) => (current - 1 + categories.length) % categories.length)} aria-label="Categorias anteriores"><ChevronLeft /></button><button type="button" onClick={() => setCategoryStart((current) => (current + 1) % categories.length)} aria-label="Próximas categorias"><ChevronRight /></button></div>
+        <div className="category-grid" key={categoryStart}>{visibleCategories.map((category) => <article className={`category-card${category.name === "Filetes e boiseries" ? " category-card-boiserie" : ""}`} key={category.name}><div className="category-image"><Image src={category.image} alt={category.name} fill loading="eager" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 46vw, 24vw" /></div><div className="category-content"><h3>{category.name}</h3><p>{category.description}</p><a href="/catalogo" aria-label={`Ver modelos de ${category.name}`}>Ver modelos <b>→</b></a></div></article>)}</div>
+        <div className="category-controls"><span className="category-progress">{categoryStart + 1} de {categories.length}</span><button className="category-rotation-toggle" type="button" onClick={() => setCategoryPaused((paused) => !paused)} aria-label={categoryPaused ? "Retomar rotação automática das categorias" : "Pausar rotação automática das categorias"} aria-pressed={categoryPaused} title={categoryPaused ? "Retomar rotação automática" : "Pausar rotação automática"}>{categoryPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}</button><button type="button" onClick={() => setCategoryStart((current) => (current - 1 + categories.length) % categories.length)} aria-label="Categorias anteriores"><ChevronLeft /></button><button type="button" onClick={() => setCategoryStart((current) => (current + 1) % categories.length)} aria-label="Próximas categorias"><ChevronRight /></button></div>
       </section>
 
       <section className="products section">
         <div className="section-title-row"><div><p>PEÇAS PREMIUM</p><h2>Perfis selecionados<br />para o seu projeto.</h2></div><a href="/catalogo">Ver todo o catálogo <b>→</b></a></div>
         <div className="product-grid">{products.map((product) => <article className="product-card" key={product.code}><div className="product-visual"><small>{product.family}</small><Image src={product.image} alt={product.name} fill sizes="(max-width: 767px) 45vw, 25vw" /></div><h3>{product.name}</h3><p>{product.code}</p><a href="/catalogo">Ver perfil e medidas <b>→</b></a></article>)}</div>
-      </section>
-
-      <section className="about section" id="quem-somos">
-        <div className="about-label"><p>QUEM SOMOS</p><span>Desde 2019</span></div>
-        <div className="about-copy"><h2>Mais do que fabricar molduras, <em>entendemos o projeto.</em></h2><p>A Decorat nasceu da experiência da arquiteta Andressa com molduras em EPS. Hoje unimos arquitetura, fabricação e acompanhamento técnico para desenvolver peças personalizadas de acordo com cada projeto.</p><strong>Arquitetura, precisão e fabricação personalizada.</strong><a className="about-link" href="/quem-somos">Conheça a nossa história <b>→</b></a></div>
       </section>
 
       <section className="comparison section">
@@ -373,22 +436,47 @@ export default function Home() {
           <div className="instagram-actions"><a className="button-primary" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramBrandIcon /> Seguir no Instagram <b>→</b></a><a className="instagram-more" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Explorar conteúdos <b>→</b></a></div>
           <div className="instagram-topics" aria-label="Conteúdos no Instagram">{instagramTopics.map(([lineOne, lineTwo, Icon]) => <div key={lineOne}><Icon aria-hidden="true" /><span>{lineOne}{lineTwo && <><br />{lineTwo}</>}</span></div>)}</div>
         </div>
+        <div className="mobile-reels-heading" aria-label={`Últimos Reels: ${activeInstagramReel + 1} de ${instagramReels.length}`}>
+          <span>ÚLTIMOS REELS</span>
+          <b>{String(activeInstagramReel + 1).padStart(2, "0")} / {String(instagramReels.length).padStart(2, "0")}</b>
+        </div>
         <div className="instagram-showcase">
-          <a className="instagram-phone" href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Abrir perfil oficial da Decorat no Instagram">
-            <div className="phone-status"><span>9:41</span><span>● ● ●</span></div>
-            <div className="phone-profile-heading"><b>‹</b><strong>decorat.molduras</strong><b>•••</b></div>
-            <div className="phone-profile"><div className="phone-avatar"><Image src="/decorat-logo.png" alt="Logotipo Decorat" fill sizes="47px" /></div><div><b>548</b><small>publicações</small></div><div><b>8.027</b><small>seguidores</small></div><div><b>3.516</b><small>seguindo</small></div></div>
-            <div className="phone-bio"><strong>Fábrica de Molduras em Isopor</strong><span>Fabricação e instalação de Molduras em EPS Internas e Externas personalizadas 🧡<br />🚚 Enviamos para todo Brasil!</span><em>linktr.ee/decoratmolduras</em></div>
-            <div className="phone-highlights">{["Clientes", "Obras", "Curiosidades", "Quem Somos", "Localização"].map((label, index) => <span key={label}><Image src={instagramPhonePosts[index]} alt={`Destaque ${label} da Decorat`} fill sizes="44px" /> <b>{label}</b></span>)}</div>
-            <div className="phone-tabs"><b>▦</b><span>▣</span><span>♙</span></div>
-            <div className="phone-grid">{instagramPhonePosts.map((image, index) => <span key={index}><Image src={image} alt="Publicação Decorat" fill sizes="92px" /></span>)}</div>
-            <div className="phone-nav"><House /><span>⌕</span><b>＋</b><span>▣</span><span>◉</span></div>
-          </a>
-          <div className="instagram-reels">{instagramReels.map((reel) => <article className={`instagram-reel instagram-reel-${reel.number}`} key={reel.number} aria-label={`Reel oficial Decorat: ${reel.title}`}><iframe src={`${reel.url}embed/captioned/`} title={`Reel oficial da Decorat: ${reel.title}`} loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /><a className="reel-external-link" href={reel.url} target="_blank" rel="noreferrer">Abrir Reel oficial: {reel.title}</a></article>)}</div>
+          <InstagramProfileMockup posts={instagramPhonePosts} profileUrl={INSTAGRAM_URL} />
+          <div className="instagram-reels" aria-label="Reels oficiais da Decorat" onScroll={(event) => {
+            const rail = event.currentTarget;
+            const firstReel = rail.firstElementChild as HTMLElement | null;
+            if (!firstReel) return;
+            const gap = Number.parseFloat(window.getComputedStyle(rail).gap) || 0;
+            const index = Math.max(0, Math.min(instagramReels.length - 1, Math.round(rail.scrollLeft / (firstReel.offsetWidth + gap))));
+            setActiveInstagramReel((current) => current === index ? current : index);
+          }}>{instagramReels.map((reel) => <article className="instagram-reel" key={reel.number} aria-label={`Reel oficial da Decorat ${reel.number}`}><InstagramEmbed url={reel.url} width="100%" captioned={false} placeholderDisabled /><a className="reel-external-link" href={reel.url} target="_blank" rel="noreferrer">Abrir Reel oficial {reel.number} no Instagram</a></article>)}</div>
         </div>
       </section>
 
-      <section className="final-cta" id="contato"><div><h2>Vamos transformar seu projeto em realidade?</h2><p>Envie seu projeto, referências ou medidas para uma análise inicial.</p></div><button className="button-primary" type="button" onClick={openPreAttendance}>Solicitar orçamento <b>→</b></button></section>
+      <section className="final-cta catalog-footer-cta" id="contato" aria-labelledby="catalog-footer-title">
+        <div className="catalog-footer-copy">
+          <p className="catalog-footer-kicker">CATÁLOGO DIGITAL DECORAT</p>
+          <h2 id="catalog-footer-title">Encontre as melhores opções em <em>molduras e sancas</em> para o seu projeto.</h2>
+          <span>Explore modelos, medidas e aplicações para escolher o acabamento ideal com mais segurança.</span>
+          <form className="catalog-lead-form" onSubmit={submitCatalogLead} noValidate>
+            <div className="catalog-lead-fields">
+              <label htmlFor="catalog-lead-name"><span>Nome</span><input id="catalog-lead-name" name="name" autoComplete="name" value={catalogLeadName} onChange={(event) => { setCatalogLeadName(event.target.value); if (catalogLeadStatus !== "idle") setCatalogLeadStatus("idle"); }} placeholder="Seu nome" required aria-invalid={catalogLeadStatus === "error"} /></label>
+              <label htmlFor="catalog-lead-email"><span>E-mail</span><input id="catalog-lead-email" name="email" type="email" inputMode="email" autoComplete="email" value={catalogLeadEmail} onChange={(event) => { setCatalogLeadEmail(event.target.value); if (catalogLeadStatus !== "idle") setCatalogLeadStatus("idle"); }} placeholder="seu@email.com" required aria-invalid={catalogLeadStatus === "error"} /></label>
+            </div>
+            <button className="button-primary catalog-download-button" type="submit" disabled={catalogLeadStatus === "loading"}>{catalogLeadStatus === "loading" ? "Preparando catálogo..." : "Baixar catálogo"} <b>↓</b></button>
+            <p className="catalog-lead-privacy">Ao continuar, o catálogo será baixado e seus dados serão preparados para envio à Decorat pelo WhatsApp.</p>
+            {catalogLeadStatus === "error" && <p className="catalog-lead-message is-error" role="alert">Informe um nome e um e-mail válidos.</p>}
+            {catalogLeadStatus === "success" && <p className="catalog-lead-message is-success" role="status">Download iniciado. Para registrar seu contato, envie a mensagem aberta no WhatsApp.</p>}
+          </form>
+          <div className="catalog-footer-actions">
+            <a className="catalog-footer-catalog-link" href="/catalogo">Ver catálogo online <b>→</b></a>
+            <button className="catalog-footer-contact" type="button" onClick={openPreAttendance}>Solicitar orçamento <b>→</b></button>
+          </div>
+        </div>
+        <div className="catalog-footer-preview" aria-label="Prévia do catálogo digital Decorat">
+          <Image className="catalog-mockup-photo" src="/catalogo-decorat-mockup-v3.png" alt="Catálogo Decorat aberto com aplicações de molduras arquitetônicas e uma edição fechada com a identidade oficial da marca" fill sizes="(max-width: 767px) 100vw, 52vw" />
+        </div>
+      </section>
       <SiteFooter />
       <button className="whatsapp" type="button" onClick={openPreAttendance} aria-label="Iniciar atendimento com a Decorat"><span>Entre em contato</span><b><WhatsAppBrandIcon /></b></button>
       <ExitIntentPopup onConversion={markExitConversion} />
