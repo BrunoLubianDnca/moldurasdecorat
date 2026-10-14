@@ -474,7 +474,7 @@ export default function Home() {
           </div>
         </div>
         <div className="catalog-footer-preview" aria-label="Prévia do catálogo digital Decorat">
-          <Image className="catalog-mockup-photo" src="/catalogo-decorat-mockup-v3.png" alt="Catálogo Decorat aberto com aplicações de molduras arquitetônicas e uma edição fechada com a identidade oficial da marca" fill sizes="(max-width: 767px) 100vw, 52vw" />
+          <Image className="catalog-mockup-photo" src="/catalogo.png" alt="Catálogo Decorat aberto com aplicações de molduras arquitetônicas e uma edição fechada com a identidade oficial da marca" fill sizes="(max-width: 767px) 100vw, 52vw" priority />
         </div>
       </section>
       <SiteFooter />
