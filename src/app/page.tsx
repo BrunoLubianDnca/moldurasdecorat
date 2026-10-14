@@ -4,7 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
-import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench, House, Lightbulb, Layers3, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Ruler, Truck, ShieldCheck, FileText, ScanLine, CheckCircle2, Package, Wrench, House, Lightbulb, Layers3, Pause, Play, MessageSquare, ImageIcon, Pencil, FileCheck, ArrowRight } from "lucide-react";
 import { InstagramBrandIcon, WhatsAppBrandIcon } from "@/components/BrandIcons";
 import InstagramProfileMockup from "@/components/InstagramProfileMockup";
 import SiteFooter from "@/components/SiteFooter";
@@ -228,6 +228,8 @@ export default function Home() {
   const [projectContext, setProjectContext] = useState("");
   const [whatsappCountdown, setWhatsappCountdown] = useState<number | null>(null);
   const [activeInstagramReel, setActiveInstagramReel] = useState(0);
+  const [activeReviewIndex, setActiveReviewIndex] = useState(0);
+  const reviewsRailRef = useRef<HTMLDivElement>(null);
   const [catalogLeadName, setCatalogLeadName] = useState("");
   const [catalogLeadEmail, setCatalogLeadEmail] = useState("");
   const [catalogLeadStatus, setCatalogLeadStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -235,6 +237,16 @@ export default function Home() {
   const attendanceLastFocusedElement = useRef<HTMLElement | null>(null);
   const visibleCategories = Array.from({ length: 4 }, (_, index) => categories[(categoryStart + index) % categories.length]);
   const markExitConversion = useCallback(() => window.sessionStorage.setItem(exitIntentStorageKey, "true"), []);
+
+  const scrollToReview = (index: number) => {
+    const rail = reviewsRailRef.current;
+    if (!rail) return;
+    const card = rail.firstElementChild as HTMLElement | null;
+    if (!card) return;
+    const gap = Number.parseFloat(window.getComputedStyle(rail).gap) || 16;
+    rail.scrollTo({ left: index * (card.offsetWidth + gap), behavior: "smooth" });
+    setActiveReviewIndex(index);
+  };
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -418,14 +430,123 @@ export default function Home() {
       </section>
 
       <section className="process section" id="processo">
-        <div className="process-intro"><p>COMO FUNCIONA</p><h2>Do primeiro contato à produção</h2></div><div className="process-area"><span className="process-lead"><strong>A produção só começa após a aprovação final do plano de corte.</strong></span><div className="process-grid">{processSteps.map(([number, title, text, Icon]) => <article key={number} tabIndex={0} aria-label={`${number} ${title}`}><b>{number}</b><Icon /><h3>{title}</h3><p>{text}</p></article>)}</div><div className="project-help"><div><p>NÃO TEM PROJETO?</p><h3>Não tem projeto? A gente ajuda.</h3><span>A partir das suas ideias, referências e fotos, podemos desenvolver esboços para ajudar na definição das molduras.<br/><br/>Quando necessário, também oferecemos projeto completo como serviço separado. O projeto possui orçamento próprio e deve ser aprovado e pago antes da elaboração do orçamento das molduras.</span></div><div className="project-help-actions"><button className="button-primary" type="button" onClick={openPreAttendance}>Já tenho meu projeto <b>→</b></button><button className="project-help-link" type="button" onClick={openPreAttendance}>Tenho apenas uma ideia <b>→</b></button></div></div></div>
+        <div className="process-intro"><p>COMO FUNCIONA</p><h2>Do primeiro contato à produção</h2></div><div className="process-area"><span className="process-lead"><strong>A produção só começa após a aprovação final do plano de corte.</strong></span><div className="process-grid">{processSteps.map(([number, title, text, Icon]) => <article key={number} tabIndex={0} aria-label={`${number} ${title}`}><b>{number}</b><Icon /><h3>{title}</h3><p>{text}</p></article>)}</div><div className="project-help">
+            <div className="project-help-info">
+              <div className="project-help-kicker-row">
+                <span className="project-help-kicker-line" aria-hidden="true" />
+                <span className="project-help-kicker">NÃO TEM PROJETO?</span>
+              </div>
+              <h3 className="project-help-title">
+                Não tem projeto?<br />
+                <em>A gente ajuda.</em>
+              </h3>
+              <p className="project-help-lead">
+                A partir das suas ideias, referências e fotos, desenvolvemos soluções personalizadas para a definição das molduras.
+              </p>
+
+              <div className="project-help-flow" aria-label="Etapas de desenvolvimento sem projeto">
+                <div className="project-help-flow-step">
+                  <div className="project-help-flow-icon"><MessageSquare aria-hidden="true" /></div>
+                  <span>Entendemos<br />sua ideia</span>
+                </div>
+                <div className="project-help-flow-step">
+                  <div className="project-help-flow-icon"><ImageIcon aria-hidden="true" /></div>
+                  <span>Analisamos<br />referências</span>
+                </div>
+                <div className="project-help-flow-step">
+                  <div className="project-help-flow-icon"><Pencil aria-hidden="true" /></div>
+                  <span>Desenvolvemos<br />a proposta</span>
+                </div>
+                <div className="project-help-flow-step">
+                  <div className="project-help-flow-icon"><FileCheck aria-hidden="true" /></div>
+                  <span>Projeto aprovado<br />e produção</span>
+                </div>
+              </div>
+
+              <p className="project-help-disclaimer">
+                Quando necessário, também oferecemos projeto completo como serviço separado, que passa por aprovação e pagamento antes da elaboração do orçamento das molduras.
+              </p>
+            </div>
+
+            <div className="project-help-cards">
+              <article className="project-help-card is-primary">
+                <div className="project-help-card-icon" aria-hidden="true">
+                  <FileText />
+                </div>
+                <h4 className="project-help-card-title">Já tenho meu projeto</h4>
+                <p className="project-help-card-desc">
+                  Envie seu projeto, planta, referências ou fotos para receber o orçamento das molduras.
+                </p>
+                <button 
+                  type="button" 
+                  className="project-help-card-btn btn-primary"
+                  onClick={openPreAttendance}
+                >
+                  <span>Enviar meu projeto</span>
+                  <span className="project-help-btn-arrow"><ArrowRight aria-hidden="true" /></span>
+                </button>
+              </article>
+
+              <article className="project-help-card is-secondary">
+                <div className="project-help-card-icon" aria-hidden="true">
+                  <Lightbulb />
+                </div>
+                <h4 className="project-help-card-title">Tenho apenas uma ideia</h4>
+                <p className="project-help-card-desc">
+                  Conte sua ideia e podemos te ajudar a desenvolver o projeto com as melhores soluções.
+                </p>
+                <button 
+                  type="button" 
+                  className="project-help-card-btn btn-outline"
+                  onClick={openPreAttendance}
+                >
+                  <span>Quero ajuda da Decorat</span>
+                  <ArrowRight aria-hidden="true" />
+                </button>
+              </article>
+            </div>
+          </div></div>
       </section>
       <section className="technical"><div><ShieldCheck /><b>Leve e resistente</b><span>EPS revestido com argamassa para um acabamento durável.</span></div><div><Ruler /><b>Feito sob medida</b><span>Perfis e dimensões definidos conforme o seu projeto.</span></div><div><Wrench /><b>Pronto para aplicar</b><span>Peças para fachadas e interiores, com orientação de instalação.</span></div></section>
 
       <section className="reviews section" aria-labelledby="reviews-title">
         <div className="reviews-heading"><p>AVALIAÇÕES NO GOOGLE</p><h2>O que nossos <em>clientes dizem.</em></h2><a href={ADDRESS_URL} target="_blank" rel="noreferrer">Ver todas as avaliações <b>→</b></a></div>
         <div className="reviews-rating"><div className="google-mark" aria-hidden="true"><GoogleIcon /></div><div className="reviews-score"><strong>4,7</strong><span aria-label="Avaliação média de 4,7 de 5">★★★★★</span></div><small>4,724 avaliações no Google</small></div>
-        <div className="reviews-list">{googleReviews.map(([text, author]) => <blockquote key={author}><p>{text}</p><cite>{author}</cite></blockquote>)}</div>
+        <div className="reviews-carousel-track">
+          <div 
+            className="reviews-list" 
+            ref={reviewsRailRef}
+            onScroll={(event) => {
+              const rail = event.currentTarget;
+              const card = rail.firstElementChild as HTMLElement | null;
+              if (!card) return;
+              const gap = Number.parseFloat(window.getComputedStyle(rail).gap) || 16;
+              const index = Math.round(rail.scrollLeft / (card.offsetWidth + gap));
+              const clamped = Math.max(0, Math.min(googleReviews.length - 1, index));
+              setActiveReviewIndex((current) => current === clamped ? current : clamped);
+            }}
+          >
+            {googleReviews.map(([text, author]) => (
+              <blockquote key={author}>
+                <p>{text}</p>
+                <cite>{author}</cite>
+              </blockquote>
+            ))}
+          </div>
+          <div className="reviews-mobile-indicators" role="tablist" aria-label="Navegação das avaliações">
+            {googleReviews.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                role="tab"
+                aria-selected={activeReviewIndex === i}
+                aria-label={`Ver avaliação ${i + 1}`}
+                className={`reviews-mobile-dot ${activeReviewIndex === i ? "is-active" : ""}`}
+                onClick={() => scrollToReview(i)}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="instagram-section section" id="instagram">
