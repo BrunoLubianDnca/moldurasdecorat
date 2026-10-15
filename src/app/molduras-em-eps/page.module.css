@@ -1,0 +1,486 @@
+.discovery {
+  padding: clamp(72px, 8vw, 124px) var(--pad);
+  background: #fff;
+}
+
+.discoveryInner {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
+
+.discoveryHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  align-items: end;
+  gap: clamp(40px, 8vw, 120px);
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+
+.discoveryHeader > div > p,
+.applicationCopy > span {
+  margin: 0 0 14px;
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.discoveryHeader h2 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--deep);
+  font-size: clamp(38px, 5.2vw, 72px);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.discoveryHeader > p {
+  max-width: 470px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.35vw, 17px);
+  line-height: 1.75;
+}
+
+.applicationList {
+  display: grid;
+  gap: clamp(54px, 7vw, 96px);
+}
+
+.guidePrompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin: calc(clamp(48px, 7vw, 88px) * -0.45) 0 clamp(48px, 6vw, 76px);
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.guidePrompt div {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+}
+
+.guidePrompt span,
+.guideHeader span {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.guidePrompt p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.guidePrompt button,
+.guideBack,
+.guideMeta button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--deep);
+  cursor: pointer;
+  font: inherit;
+}
+
+.guidePrompt button {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--deep);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.guidePrompt button b,
+.guideOptions button b,
+.guideDestinations a b {
+  color: var(--orange);
+}
+
+.guide {
+  margin: calc(clamp(48px, 7vw, 88px) * -0.45) 0 clamp(56px, 7vw, 88px);
+  padding: clamp(26px, 4vw, 46px);
+  border: 1px solid var(--line);
+  background: #fbfaf7;
+}
+
+.guideHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.guideHeader h3 {
+  margin: 9px 0 0;
+  color: var(--deep);
+  font-size: clamp(24px, 2.5vw, 36px);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.guideMeta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.guideMeta > span {
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.guideMeta button,
+.guideBack {
+  padding: 5px 0;
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.guideProgress {
+  height: 2px;
+  margin: 26px 0 clamp(28px, 4vw, 44px);
+  overflow: hidden;
+  background: #e1ded7;
+}
+
+.guideProgress i {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+  transition: width 220ms ease;
+}
+
+.guideStep {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.guideStep legend,
+.guideStep h4 {
+  margin: 0 0 24px;
+  color: var(--deep);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 720;
+  letter-spacing: -0.025em;
+}
+
+.guideOptions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.guideOptions button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--deep);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 720;
+  text-align: left;
+}
+
+.guideOptions button:hover,
+.guideOptions button:focus-visible,
+.guideDestinations a:hover,
+.guideDestinations a:focus-visible {
+  border-color: var(--deep);
+}
+
+.guideBack {
+  margin-top: 24px;
+  color: var(--muted);
+}
+
+.guideSummary {
+  margin: -12px 0 26px;
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.guideDestinations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.guideDestinations a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--deep);
+  text-decoration: none;
+}
+
+.guideDestinations a span {
+  font-size: 15px;
+  font-weight: 760;
+}
+
+.guideDestinations a small {
+  grid-column: 1;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.guideDestinations a b {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.guideCommercialNote {
+  max-width: 800px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.applicationPath {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(300px, 0.58fr);
+  align-items: stretch;
+  min-height: clamp(420px, 43vw, 590px);
+  border-top: 1px solid var(--line);
+}
+
+.applicationPath.reverse {
+  grid-template-columns: minmax(300px, 0.58fr) minmax(0, 1.42fr);
+}
+
+.applicationPath.reverse .applicationImage {
+  order: 2;
+}
+
+.applicationPath.reverse .applicationCopy {
+  order: 1;
+  padding-left: 0;
+  padding-right: clamp(36px, 6vw, 92px);
+}
+
+.applicationImage {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.applicationImage img {
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.applicationPath:hover .applicationImage img {
+  transform: scale(1.018);
+}
+
+.applicationCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(42px, 6vw, 92px) 0 clamp(42px, 6vw, 92px) clamp(36px, 6vw, 92px);
+}
+
+.applicationCopy h3 {
+  margin: 0;
+  color: var(--deep);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.applicationCopy p {
+  max-width: 410px;
+  margin: 24px 0 34px;
+  color: var(--muted);
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.72;
+}
+
+.applicationCopy a,
+.catalogConnection a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--deep);
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.applicationCopy a b,
+.catalogConnection a b {
+  color: var(--orange);
+  transition: transform 180ms ease;
+}
+
+.applicationCopy a:hover b,
+.applicationCopy a:focus-visible b,
+.catalogConnection a:hover b,
+.catalogConnection a:focus-visible b {
+  transform: translateX(4px);
+}
+
+.catalogConnection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin-top: clamp(54px, 7vw, 92px);
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.catalogConnection p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.catalogConnection a {
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .discoveryHeader {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .applicationPath,
+  .applicationPath.reverse {
+    grid-template-columns: minmax(0, 1.18fr) minmax(250px, 0.82fr);
+    min-height: 390px;
+  }
+
+  .applicationImage {
+    min-height: 390px;
+  }
+
+  .guideOptions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .discovery {
+    padding-inline: 20px;
+  }
+
+  .applicationList {
+    gap: 52px;
+  }
+
+  .guidePrompt,
+  .guideHeader,
+  .guidePrompt div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .guidePrompt {
+    gap: 18px;
+  }
+
+  .guidePrompt div {
+    gap: 8px;
+  }
+
+  .guide {
+    padding: 24px 18px;
+  }
+
+  .guideHeader {
+    gap: 18px;
+  }
+
+  .guideMeta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .guideOptions,
+  .guideDestinations {
+    grid-template-columns: 1fr;
+  }
+
+  .applicationPath,
+  .applicationPath.reverse {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .applicationPath.reverse .applicationImage,
+  .applicationPath.reverse .applicationCopy {
+    order: initial;
+  }
+
+  .applicationImage {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .applicationCopy,
+  .applicationPath.reverse .applicationCopy {
+    padding: 28px 0 0;
+  }
+
+  .applicationCopy p {
+    margin: 18px 0 26px;
+  }
+
+  .catalogConnection {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .applicationImage img,
+  .applicationCopy a b,
+  .catalogConnection a b {
+    transition: none;
+  }
+
+  .guideProgress i {
+    transition: none;
+  }
+}

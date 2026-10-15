@@ -14,6 +14,9 @@ export interface ProductItem {
   codigo: string;
   nome: string;
   categoria: string;
+  familia: string;
+  aplicacoes: string[];
+  status_classificacao: string;
   altura_mm: number | null;
   largura_mm: number | null;
   imagem: string;
@@ -25,7 +28,7 @@ export interface ProductItem {
 interface MolduraModalProps {
   product: ProductItem | null;
   onClose: () => void;
-  onSelectWhatsApp: (product: ProductItem) => void;
+  onRequestQuote: (product: ProductItem) => void;
 }
 
 function useDialogInteraction(enabled: boolean, onClose: () => void, dialogRef: RefObject<HTMLDivElement | null>, initialFocusRef: RefObject<HTMLElement | null>) {
@@ -82,7 +85,7 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-export default function MolduraModal({ product, onClose, onSelectWhatsApp }: MolduraModalProps) {
+export default function MolduraModal({ product, onClose, onRequestQuote }: MolduraModalProps) {
   const [view, setView] = useState<"3d" | "render">("3d");
   const [showTechnical, setShowTechnical] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -155,7 +158,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
             <div className="decorat-m001-info-kicker"><span /> {product.categoria}</div>
             <p className="decorat-m001-code">{product.codigo}</p>
             <h2 id="decorat-showroom-title">Moldura <em>{product.codigo}</em></h2>
-            <p id="decorat-showroom-description" className="decorat-m001-description">Perfil arquitetônico em EPS para fachadas com acabamento preciso, leveza e presença.</p>
+            <p id="decorat-showroom-description" className="decorat-m001-description">Perfil arquitetônico em EPS com acabamento preciso, leveza e presença para especificação em projeto.</p>
 
             <div className="decorat-m001-dimensions">
               <span>DIMENSÕES CONFIRMADAS</span>
@@ -166,7 +169,7 @@ export default function MolduraModal({ product, onClose, onSelectWhatsApp }: Mol
               </div>
             </div>
 
-            <button type="button" className="decorat-m001-quote" onClick={() => onSelectWhatsApp(product)} aria-label={`Solicitar orçamento da moldura ${product.codigo} pelo WhatsApp`}>
+            <button type="button" className="decorat-m001-quote" onClick={() => onRequestQuote(product)} aria-label={`Iniciar atendimento sobre a moldura ${product.codigo}`}>
               <span>Solicitar orçamento</span>
               <WhatsAppIcon size={20} />
             </button>

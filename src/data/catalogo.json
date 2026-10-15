@@ -8,7 +8,10 @@
     "imagem": "/catalogo/produtos/M001.webp",
     "perfil": "/catalogo/perfis/M001.svg",
     "modelo3d": "/catalogo/modelos/M001.glb",
-    "status_validacao": "validado"
+    "status_validacao": "validado",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M002",
@@ -19,7 +22,10 @@
     "imagem": "/catalogo/produtos/M002.webp",
     "perfil": "/catalogo/perfis/M002.svg",
     "modelo3d": "/catalogo/modelos/M002.glb",
-    "status_validacao": "validado"
+    "status_validacao": "validado",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M003",
@@ -30,7 +36,10 @@
     "imagem": "/catalogo/produtos/M003.webp",
     "perfil": "/catalogo/perfis/M003.svg",
     "modelo3d": "/catalogo/modelos/M003.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M004",
@@ -41,7 +50,10 @@
     "imagem": "/catalogo/produtos/M004.webp",
     "perfil": "/catalogo/perfis/M004.svg",
     "modelo3d": "/catalogo/modelos/M004.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M005",
@@ -52,7 +64,10 @@
     "imagem": "/catalogo/produtos/M005.webp",
     "perfil": "/catalogo/perfis/M005.svg",
     "modelo3d": "/catalogo/modelos/M005.glb",
-    "status_validacao": "validado"
+    "status_validacao": "validado",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M006",
@@ -63,7 +78,10 @@
     "imagem": "/catalogo/produtos/M006.webp",
     "perfil": "/catalogo/perfis/M006.svg",
     "modelo3d": "/catalogo/modelos/M006.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M007",
@@ -74,7 +92,10 @@
     "imagem": "/catalogo/produtos/M007.webp",
     "perfil": "/catalogo/perfis/M007.svg",
     "modelo3d": "/catalogo/modelos/M007.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M008",
@@ -85,7 +106,10 @@
     "imagem": "/catalogo/produtos/M008.webp",
     "perfil": "/catalogo/perfis/M008.svg",
     "modelo3d": "/catalogo/modelos/M008.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M009",
@@ -96,7 +120,10 @@
     "imagem": "/catalogo/produtos/M009.webp",
     "perfil": "/catalogo/perfis/M009.svg",
     "modelo3d": "/catalogo/modelos/M009.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M010",
@@ -107,7 +134,10 @@
     "imagem": "/catalogo/produtos/M010.webp",
     "perfil": "/catalogo/perfis/M010.svg",
     "modelo3d": "/catalogo/modelos/M010.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M011",
@@ -118,7 +148,10 @@
     "imagem": "/catalogo/produtos/M011.webp",
     "perfil": "/catalogo/perfis/M011.svg",
     "modelo3d": "/catalogo/modelos/M011.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M012",
@@ -129,7 +162,10 @@
     "imagem": "/catalogo/produtos/M012.webp",
     "perfil": "/catalogo/perfis/M012.svg",
     "modelo3d": "/catalogo/modelos/M012.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M013",
@@ -140,7 +176,10 @@
     "imagem": "/catalogo/produtos/M013.webp",
     "perfil": "/catalogo/perfis/M013.svg",
     "modelo3d": "/catalogo/modelos/M013.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M014",
@@ -151,7 +190,10 @@
     "imagem": "/catalogo/produtos/M014.webp",
     "perfil": "/catalogo/perfis/M014.svg",
     "modelo3d": "/catalogo/modelos/M014.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M015",
@@ -162,7 +204,10 @@
     "imagem": "/catalogo/produtos/M015.webp",
     "perfil": "/catalogo/perfis/M015.svg",
     "modelo3d": "/catalogo/modelos/M015.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M016",
@@ -173,7 +218,10 @@
     "imagem": "/catalogo/produtos/M016.webp",
     "perfil": "/catalogo/perfis/M016.svg",
     "modelo3d": "/catalogo/modelos/M016.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M017",
@@ -184,7 +232,10 @@
     "imagem": "/catalogo/produtos/M017.webp",
     "perfil": "/catalogo/perfis/M017.svg",
     "modelo3d": "/catalogo/modelos/M017.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M018",
@@ -195,7 +246,10 @@
     "imagem": "/catalogo/produtos/M018.webp",
     "perfil": "/catalogo/perfis/M018.svg",
     "modelo3d": "/catalogo/modelos/M018.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M019",
@@ -206,7 +260,10 @@
     "imagem": "/catalogo/produtos/M019.webp",
     "perfil": "/catalogo/perfis/M019.svg",
     "modelo3d": "/catalogo/modelos/M019.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M020",
@@ -217,7 +274,10 @@
     "imagem": "/catalogo/produtos/M020.webp",
     "perfil": "/catalogo/perfis/M020.svg",
     "modelo3d": "/catalogo/modelos/M020.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M021",
@@ -228,7 +288,10 @@
     "imagem": "/catalogo/produtos/M021.webp",
     "perfil": "/catalogo/perfis/M021.svg",
     "modelo3d": "/catalogo/modelos/M021.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M022",
@@ -239,7 +302,10 @@
     "imagem": "/catalogo/produtos/M022.webp",
     "perfil": "/catalogo/perfis/M022.svg",
     "modelo3d": "/catalogo/modelos/M022.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M023",
@@ -250,7 +316,10 @@
     "imagem": "/catalogo/produtos/M023.webp",
     "perfil": "/catalogo/perfis/M023.svg",
     "modelo3d": "/catalogo/modelos/M023.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M024",
@@ -261,7 +330,10 @@
     "imagem": "/catalogo/produtos/M024.webp",
     "perfil": "/catalogo/perfis/M024.svg",
     "modelo3d": "/catalogo/modelos/M024.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M025",
@@ -272,7 +344,10 @@
     "imagem": "/catalogo/produtos/M025.webp",
     "perfil": "/catalogo/perfis/M025.svg",
     "modelo3d": "/catalogo/modelos/M025.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M026",
@@ -283,7 +358,10 @@
     "imagem": "/catalogo/produtos/M026.webp",
     "perfil": "/catalogo/perfis/M026.svg",
     "modelo3d": "/catalogo/modelos/M026.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M027",
@@ -294,7 +372,10 @@
     "imagem": "/catalogo/produtos/M027.webp",
     "perfil": "/catalogo/perfis/M027.svg",
     "modelo3d": "/catalogo/modelos/M027.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M028",
@@ -305,7 +386,10 @@
     "imagem": "/catalogo/produtos/M028.webp",
     "perfil": "/catalogo/perfis/M028.svg",
     "modelo3d": "/catalogo/modelos/M028.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M029",
@@ -316,7 +400,10 @@
     "imagem": "/catalogo/produtos/M029.webp",
     "perfil": "/catalogo/perfis/M029.svg",
     "modelo3d": "/catalogo/modelos/M029.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M030",
@@ -327,7 +414,10 @@
     "imagem": "/catalogo/produtos/M030.webp",
     "perfil": "/catalogo/perfis/M030.svg",
     "modelo3d": "/catalogo/modelos/M030.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M031",
@@ -338,7 +428,10 @@
     "imagem": "/catalogo/produtos/M031.webp",
     "perfil": "/catalogo/perfis/M031.svg",
     "modelo3d": "/catalogo/modelos/M031.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M032",
@@ -349,7 +442,10 @@
     "imagem": "/catalogo/produtos/M032.webp",
     "perfil": "/catalogo/perfis/M032.svg",
     "modelo3d": "/catalogo/modelos/M032.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M033",
@@ -360,7 +456,10 @@
     "imagem": "/catalogo/produtos/M033.webp",
     "perfil": "/catalogo/perfis/M033.svg",
     "modelo3d": "/catalogo/modelos/M033.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M034",
@@ -371,7 +470,10 @@
     "imagem": "/catalogo/produtos/M034.webp",
     "perfil": "/catalogo/perfis/M034.svg",
     "modelo3d": "/catalogo/modelos/M034.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M035",
@@ -382,7 +484,10 @@
     "imagem": "/catalogo/produtos/M035.webp",
     "perfil": "/catalogo/perfis/M035.svg",
     "modelo3d": "/catalogo/modelos/M035.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M036",
@@ -393,7 +498,10 @@
     "imagem": "/catalogo/produtos/M036.webp",
     "perfil": "/catalogo/perfis/M036.svg",
     "modelo3d": "/catalogo/modelos/M036.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M037",
@@ -404,7 +512,10 @@
     "imagem": "/catalogo/produtos/M037.webp",
     "perfil": "/catalogo/perfis/M037.svg",
     "modelo3d": "/catalogo/modelos/M037.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M038",
@@ -415,7 +526,10 @@
     "imagem": "/catalogo/produtos/M038.webp",
     "perfil": "/catalogo/perfis/M038.svg",
     "modelo3d": "/catalogo/modelos/M038.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M039",
@@ -426,7 +540,10 @@
     "imagem": "/catalogo/produtos/M039.webp",
     "perfil": "/catalogo/perfis/M039.svg",
     "modelo3d": "/catalogo/modelos/M039.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M040",
@@ -437,7 +554,10 @@
     "imagem": "/catalogo/produtos/M040.webp",
     "perfil": "/catalogo/perfis/M040.svg",
     "modelo3d": "/catalogo/modelos/M040.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M041",
@@ -448,7 +568,10 @@
     "imagem": "/catalogo/produtos/M041.webp",
     "perfil": "/catalogo/perfis/M041.svg",
     "modelo3d": "/catalogo/modelos/M041.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M042",
@@ -459,7 +582,10 @@
     "imagem": "/catalogo/produtos/M042.webp",
     "perfil": "/catalogo/perfis/M042.svg",
     "modelo3d": "/catalogo/modelos/M042.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M043",
@@ -470,7 +596,10 @@
     "imagem": "/catalogo/produtos/M043.webp",
     "perfil": "/catalogo/perfis/M043.svg",
     "modelo3d": "/catalogo/modelos/M043.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M044",
@@ -481,7 +610,10 @@
     "imagem": "/catalogo/produtos/M044.webp",
     "perfil": "/catalogo/perfis/M044.svg",
     "modelo3d": "/catalogo/modelos/M044.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M045",
@@ -492,7 +624,10 @@
     "imagem": "/catalogo/produtos/M045.webp",
     "perfil": "/catalogo/perfis/M045.svg",
     "modelo3d": "/catalogo/modelos/M045.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M046",
@@ -503,7 +638,10 @@
     "imagem": "/catalogo/produtos/M046.webp",
     "perfil": "/catalogo/perfis/M046.svg",
     "modelo3d": "/catalogo/modelos/M046.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M047",
@@ -514,7 +652,10 @@
     "imagem": "/catalogo/produtos/M047.webp",
     "perfil": "/catalogo/perfis/M047.svg",
     "modelo3d": "/catalogo/modelos/M047.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M048",
@@ -525,7 +666,10 @@
     "imagem": "/catalogo/produtos/M048.webp",
     "perfil": "/catalogo/perfis/M048.svg",
     "modelo3d": "/catalogo/modelos/M048.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M049",
@@ -536,7 +680,10 @@
     "imagem": "/catalogo/produtos/M049.webp",
     "perfil": "/catalogo/perfis/M049.svg",
     "modelo3d": "/catalogo/modelos/M049.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M050",
@@ -547,7 +694,10 @@
     "imagem": "/catalogo/produtos/M050.webp",
     "perfil": "/catalogo/perfis/M050.svg",
     "modelo3d": "/catalogo/modelos/M050.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M051",
@@ -558,7 +708,10 @@
     "imagem": "/catalogo/produtos/M051.webp",
     "perfil": "/catalogo/perfis/M051.svg",
     "modelo3d": "/catalogo/modelos/M051.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M052",
@@ -569,7 +722,10 @@
     "imagem": "/catalogo/produtos/M052.webp",
     "perfil": "/catalogo/perfis/M052.svg",
     "modelo3d": "/catalogo/modelos/M052.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M053",
@@ -580,7 +736,10 @@
     "imagem": "/catalogo/produtos/M053.webp",
     "perfil": "/catalogo/perfis/M053.svg",
     "modelo3d": "/catalogo/modelos/M053.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M054",
@@ -591,7 +750,10 @@
     "imagem": "/catalogo/produtos/M054.webp",
     "perfil": "/catalogo/perfis/M054.svg",
     "modelo3d": "/catalogo/modelos/M054.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M055",
@@ -602,7 +764,10 @@
     "imagem": "/catalogo/produtos/M055.webp",
     "perfil": "/catalogo/perfis/M055.svg",
     "modelo3d": "/catalogo/modelos/M055.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M056",
@@ -613,7 +778,10 @@
     "imagem": "/catalogo/produtos/M056.webp",
     "perfil": "/catalogo/perfis/M056.svg",
     "modelo3d": "/catalogo/modelos/M056.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M057",
@@ -624,7 +792,10 @@
     "imagem": "/catalogo/produtos/M057.webp",
     "perfil": "/catalogo/perfis/M057.svg",
     "modelo3d": "/catalogo/modelos/M057.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M058",
@@ -635,7 +806,10 @@
     "imagem": "/catalogo/produtos/M058.webp",
     "perfil": "/catalogo/perfis/M058.svg",
     "modelo3d": "/catalogo/modelos/M058.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M059",
@@ -646,7 +820,10 @@
     "imagem": "/catalogo/produtos/M059.webp",
     "perfil": "/catalogo/perfis/M059.svg",
     "modelo3d": "/catalogo/modelos/M059.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M060",
@@ -657,7 +834,10 @@
     "imagem": "/catalogo/produtos/M060.webp",
     "perfil": "/catalogo/perfis/M060.svg",
     "modelo3d": "/catalogo/modelos/M060.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M061",
@@ -668,7 +848,10 @@
     "imagem": "/catalogo/produtos/M061.webp",
     "perfil": "/catalogo/perfis/M061.svg",
     "modelo3d": "/catalogo/modelos/M061.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M062",
@@ -679,7 +862,10 @@
     "imagem": "/catalogo/produtos/M062.webp",
     "perfil": "/catalogo/perfis/M062.svg",
     "modelo3d": "/catalogo/modelos/M062.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M063",
@@ -690,7 +876,10 @@
     "imagem": "/catalogo/produtos/M063.webp",
     "perfil": "/catalogo/perfis/M063.svg",
     "modelo3d": "/catalogo/modelos/M063.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M064",
@@ -701,7 +890,10 @@
     "imagem": "/catalogo/produtos/M064.webp",
     "perfil": "/catalogo/perfis/M064.svg",
     "modelo3d": "/catalogo/modelos/M064.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M065",
@@ -712,7 +904,10 @@
     "imagem": "/catalogo/produtos/M065.webp",
     "perfil": "/catalogo/perfis/M065.svg",
     "modelo3d": "/catalogo/modelos/M065.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M066",
@@ -723,7 +918,10 @@
     "imagem": "/catalogo/produtos/M066.webp",
     "perfil": "/catalogo/perfis/M066.svg",
     "modelo3d": "/catalogo/modelos/M066.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M067",
@@ -734,7 +932,10 @@
     "imagem": "/catalogo/produtos/M067.webp",
     "perfil": "/catalogo/perfis/M067.svg",
     "modelo3d": "/catalogo/modelos/M067.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M068",
@@ -745,7 +946,10 @@
     "imagem": "/catalogo/produtos/M068.webp",
     "perfil": "/catalogo/perfis/M068.svg",
     "modelo3d": "/catalogo/modelos/M068.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M069",
@@ -756,7 +960,10 @@
     "imagem": "/catalogo/produtos/M069.webp",
     "perfil": "/catalogo/perfis/M069.svg",
     "modelo3d": "/catalogo/modelos/M069.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M070",
@@ -767,7 +974,10 @@
     "imagem": "/catalogo/produtos/M070.webp",
     "perfil": "/catalogo/perfis/M070.svg",
     "modelo3d": "/catalogo/modelos/M070.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M071",
@@ -778,7 +988,10 @@
     "imagem": "/catalogo/produtos/M071.webp",
     "perfil": "/catalogo/perfis/M071.svg",
     "modelo3d": "/catalogo/modelos/M071.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M072",
@@ -789,7 +1002,10 @@
     "imagem": "/catalogo/produtos/M072.webp",
     "perfil": "/catalogo/perfis/M072.svg",
     "modelo3d": "/catalogo/modelos/M072.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M073",
@@ -800,7 +1016,10 @@
     "imagem": "/catalogo/produtos/M073.webp",
     "perfil": "/catalogo/perfis/M073.svg",
     "modelo3d": "/catalogo/modelos/M073.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M074",
@@ -811,7 +1030,10 @@
     "imagem": "/catalogo/produtos/M074.webp",
     "perfil": "/catalogo/perfis/M074.svg",
     "modelo3d": "/catalogo/modelos/M074.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M075",
@@ -822,7 +1044,10 @@
     "imagem": "/catalogo/produtos/M075.webp",
     "perfil": "/catalogo/perfis/M075.svg",
     "modelo3d": "/catalogo/modelos/M075.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M076",
@@ -833,7 +1058,10 @@
     "imagem": "/catalogo/produtos/M076.webp",
     "perfil": "/catalogo/perfis/M076.svg",
     "modelo3d": "/catalogo/modelos/M076.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M077",
@@ -844,7 +1072,10 @@
     "imagem": "/catalogo/produtos/M077.webp",
     "perfil": "/catalogo/perfis/M077.svg",
     "modelo3d": "/catalogo/modelos/M077.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M078",
@@ -855,7 +1086,10 @@
     "imagem": "/catalogo/produtos/M078.webp",
     "perfil": "/catalogo/perfis/M078.svg",
     "modelo3d": "/catalogo/modelos/M078.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M079",
@@ -866,7 +1100,10 @@
     "imagem": "/catalogo/produtos/M079.webp",
     "perfil": "/catalogo/perfis/M079.svg",
     "modelo3d": "/catalogo/modelos/M079.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M080",
@@ -877,7 +1114,10 @@
     "imagem": "/catalogo/produtos/M080.webp",
     "perfil": "/catalogo/perfis/M080.svg",
     "modelo3d": "/catalogo/modelos/M080.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M081",
@@ -888,7 +1128,10 @@
     "imagem": "/catalogo/produtos/M081.webp",
     "perfil": "/catalogo/perfis/M081.svg",
     "modelo3d": "/catalogo/modelos/M081.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M082",
@@ -899,7 +1142,10 @@
     "imagem": "/catalogo/produtos/M082.webp",
     "perfil": "/catalogo/perfis/M082.svg",
     "modelo3d": "/catalogo/modelos/M082.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M083",
@@ -910,7 +1156,10 @@
     "imagem": "/catalogo/produtos/M083.webp",
     "perfil": "/catalogo/perfis/M083.svg",
     "modelo3d": "/catalogo/modelos/M083.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M084",
@@ -921,7 +1170,10 @@
     "imagem": "/catalogo/produtos/M084.webp",
     "perfil": "/catalogo/perfis/M084.svg",
     "modelo3d": "/catalogo/modelos/M084.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M085",
@@ -932,7 +1184,10 @@
     "imagem": "/catalogo/produtos/M085.webp",
     "perfil": "/catalogo/perfis/M085.svg",
     "modelo3d": "/catalogo/modelos/M085.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M086",
@@ -943,7 +1198,10 @@
     "imagem": "/catalogo/produtos/M086.webp",
     "perfil": "/catalogo/perfis/M086.svg",
     "modelo3d": "/catalogo/modelos/M086.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M087",
@@ -954,7 +1212,10 @@
     "imagem": "/catalogo/produtos/M087.webp",
     "perfil": "/catalogo/perfis/M087.svg",
     "modelo3d": "/catalogo/modelos/M087.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M088",
@@ -965,7 +1226,10 @@
     "imagem": "/catalogo/produtos/M088.webp",
     "perfil": "/catalogo/perfis/M088.svg",
     "modelo3d": "/catalogo/modelos/M088.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M089",
@@ -976,7 +1240,10 @@
     "imagem": "/catalogo/produtos/M089.webp",
     "perfil": "/catalogo/perfis/M089.svg",
     "modelo3d": "/catalogo/modelos/M089.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M090",
@@ -987,7 +1254,10 @@
     "imagem": "/catalogo/produtos/M090.webp",
     "perfil": "/catalogo/perfis/M090.svg",
     "modelo3d": "/catalogo/modelos/M090.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M091",
@@ -998,7 +1268,10 @@
     "imagem": "/catalogo/produtos/M091.webp",
     "perfil": "/catalogo/perfis/M091.svg",
     "modelo3d": "/catalogo/modelos/M091.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M092",
@@ -1009,7 +1282,10 @@
     "imagem": "/catalogo/produtos/M092.webp",
     "perfil": "/catalogo/perfis/M092.svg",
     "modelo3d": "/catalogo/modelos/M092.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M093",
@@ -1020,7 +1296,10 @@
     "imagem": "/catalogo/produtos/M093.webp",
     "perfil": "/catalogo/perfis/M093.svg",
     "modelo3d": "/catalogo/modelos/M093.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M094",
@@ -1031,7 +1310,10 @@
     "imagem": "/catalogo/produtos/M094.webp",
     "perfil": "/catalogo/perfis/M094.svg",
     "modelo3d": "/catalogo/modelos/M094.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M095",
@@ -1042,7 +1324,10 @@
     "imagem": "/catalogo/produtos/M095.webp",
     "perfil": "/catalogo/perfis/M095.svg",
     "modelo3d": "/catalogo/modelos/M095.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M096",
@@ -1053,7 +1338,10 @@
     "imagem": "/catalogo/produtos/M096.webp",
     "perfil": "/catalogo/perfis/M096.svg",
     "modelo3d": "/catalogo/modelos/M096.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M097",
@@ -1064,7 +1352,10 @@
     "imagem": "/catalogo/produtos/M097.webp",
     "perfil": "/catalogo/perfis/M097.svg",
     "modelo3d": "/catalogo/modelos/M097.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M098",
@@ -1075,7 +1366,10 @@
     "imagem": "/catalogo/produtos/M098.webp",
     "perfil": "/catalogo/perfis/M098.svg",
     "modelo3d": "/catalogo/modelos/M098.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M099",
@@ -1086,7 +1380,10 @@
     "imagem": "/catalogo/produtos/M099.webp",
     "perfil": "/catalogo/perfis/M099.svg",
     "modelo3d": "/catalogo/modelos/M099.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M100",
@@ -1097,7 +1394,10 @@
     "imagem": "/catalogo/produtos/M100.webp",
     "perfil": "/catalogo/perfis/M100.svg",
     "modelo3d": "/catalogo/modelos/M100.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M101",
@@ -1108,7 +1408,10 @@
     "imagem": "/catalogo/produtos/M101.webp",
     "perfil": "/catalogo/perfis/M101.svg",
     "modelo3d": "/catalogo/modelos/M101.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M102",
@@ -1119,7 +1422,10 @@
     "imagem": "/catalogo/produtos/M102.webp",
     "perfil": "/catalogo/perfis/M102.svg",
     "modelo3d": "/catalogo/modelos/M102.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M103",
@@ -1130,7 +1436,10 @@
     "imagem": "/catalogo/produtos/M103.webp",
     "perfil": "/catalogo/perfis/M103.svg",
     "modelo3d": "/catalogo/modelos/M103.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M104",
@@ -1141,7 +1450,10 @@
     "imagem": "/catalogo/produtos/M104.webp",
     "perfil": "/catalogo/perfis/M104.svg",
     "modelo3d": "/catalogo/modelos/M104.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M105",
@@ -1152,7 +1464,10 @@
     "imagem": "/catalogo/produtos/M105.webp",
     "perfil": "/catalogo/perfis/M105.svg",
     "modelo3d": "/catalogo/modelos/M105.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M106",
@@ -1163,7 +1478,10 @@
     "imagem": "/catalogo/produtos/M106.webp",
     "perfil": "/catalogo/perfis/M106.svg",
     "modelo3d": "/catalogo/modelos/M106.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M107",
@@ -1174,7 +1492,10 @@
     "imagem": "/catalogo/produtos/M107.webp",
     "perfil": "/catalogo/perfis/M107.svg",
     "modelo3d": "/catalogo/modelos/M107.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M108",
@@ -1185,7 +1506,10 @@
     "imagem": "/catalogo/produtos/M108.webp",
     "perfil": "/catalogo/perfis/M108.svg",
     "modelo3d": "/catalogo/modelos/M108.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M109",
@@ -1196,7 +1520,10 @@
     "imagem": "/catalogo/produtos/M109.webp",
     "perfil": "/catalogo/perfis/M109.svg",
     "modelo3d": "/catalogo/modelos/M109.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M110",
@@ -1207,7 +1534,10 @@
     "imagem": "/catalogo/produtos/M110.webp",
     "perfil": "/catalogo/perfis/M110.svg",
     "modelo3d": "/catalogo/modelos/M110.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M111",
@@ -1218,7 +1548,10 @@
     "imagem": "/catalogo/produtos/M111.webp",
     "perfil": "/catalogo/perfis/M111.svg",
     "modelo3d": "/catalogo/modelos/M111.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M112",
@@ -1229,7 +1562,10 @@
     "imagem": "/catalogo/produtos/M112.webp",
     "perfil": "/catalogo/perfis/M112.svg",
     "modelo3d": "/catalogo/modelos/M112.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M113",
@@ -1240,7 +1576,10 @@
     "imagem": "/catalogo/produtos/M113.webp",
     "perfil": "/catalogo/perfis/M113.svg",
     "modelo3d": "/catalogo/modelos/M113.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   },
   {
     "codigo": "M114",
@@ -1251,6 +1590,9 @@
     "imagem": "/catalogo/produtos/M114.webp",
     "perfil": "/catalogo/perfis/M114.svg",
     "modelo3d": "/catalogo/modelos/M114.glb",
-    "status_validacao": "pendente"
+    "status_validacao": "pendente",
+    "familia": "moldura_arquitetonica_eps",
+    "aplicacoes": [],
+    "status_classificacao": "familia_confirmada_aplicacoes_pendentes"
   }
 ]

@@ -4,49 +4,78 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Box, Ruler, Search } from "lucide-react";
 import catalogDataRaw from "@/data/catalogo.json";
-import { createWhatsAppUrl } from "@/config/site";
+import {
+  applicationContexts,
+  createPreAttendanceHref,
+  hasPreAttendanceContext,
+  projectStageContexts,
+  type PreAttendanceContext,
+} from "@/lib/preAtendimento";
 import MolduraModal, { ProductItem } from "./MolduraModal";
 
 const catalogData = catalogDataRaw as ProductItem[];
+const ALL_APPLICATIONS = "Todos";
 
-export default function CatalogoDigital() {
+const validatedApplications = Array.from(
+  new Set(
+    catalogData.flatMap((item) =>
+      Array.isArray(item.aplicacoes)
+        ? item.aplicacoes.filter((application): application is string => Boolean(application?.trim()))
+        : [],
+    ),
+  ),
+).sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+function formatApplicationLabel(application: string) {
+  const label = application.replaceAll("_", " ").replaceAll("-", " ").trim();
+  return label ? label.charAt(0).toLocaleUpperCase("pt-BR") + label.slice(1) : application;
+}
+
+export default function CatalogoDigital({ initialContext = {} }: { initialContext?: PreAttendanceContext }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [activeApplication, setActiveApplication] = useState(ALL_APPLICATIONS);
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [visibleCount, setVisibleCount] = useState(12);
 
-  const filterCategories = ["Todos", "Molduras externas", "Filetes", "Guarnições", "Sancas", "Pilares", "Internos", "Personalizados"];
-
   const filteredProducts = useMemo(() => {
+    const normalizedSearch = searchTerm.toLocaleLowerCase("pt-BR").trim();
+
     return catalogData.filter((item) => {
       const matchesSearch =
-        item.codigo.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
-        item.nome.toLowerCase().includes(searchTerm.toLowerCase().trim());
-      // For now, if activeCategory is not Todos, we can match it against category or name
-      let matchesCategory = true;
-      if (activeCategory !== "Todos") {
-         matchesCategory = item.categoria?.toLowerCase().includes(activeCategory.toLowerCase()) || item.nome?.toLowerCase().includes(activeCategory.toLowerCase());
-         if (activeCategory === "Molduras externas") matchesCategory = true; // Fallback since all are EPS
-      }
-      return matchesSearch && matchesCategory;
+        item.codigo.toLocaleLowerCase("pt-BR").includes(normalizedSearch) ||
+        item.nome.toLocaleLowerCase("pt-BR").includes(normalizedSearch);
+      const matchesApplication =
+        activeApplication === ALL_APPLICATIONS || item.aplicacoes.includes(activeApplication);
+
+      return matchesSearch && matchesApplication;
     });
-  }, [searchTerm, activeCategory]);
+  }, [searchTerm, activeApplication]);
 
   const displayedProducts = useMemo(() => {
     return filteredProducts.slice(0, visibleCount);
   }, [filteredProducts, visibleCount]);
 
-  const handleWhatsAppQuote = (product: ProductItem) => {
-    const text = `Olá! Gostaria de solicitar um orçamento para a moldura ${product.codigo} (${
-      product.altura_mm ? `${product.altura_mm}x${product.largura_mm}mm` : "dimensões no catálogo"
-    }).`;
-    const url = createWhatsAppUrl(text);
-    window.open(url, "_blank");
+  const handleRequestQuote = (product: ProductItem) => {
+    window.location.assign(createPreAttendanceHref({ ...initialContext, profileCode: product.codigo }));
   };
+
+  const contextLabel = [
+    initialContext.application ? applicationContexts[initialContext.application].label : "",
+    initialContext.projectStage ? projectStageContexts[initialContext.projectStage] : "",
+  ].filter(Boolean).join(" · ");
 
   return (
     <section className="catalogo-digital-section" id="catalogo-digital">
       <div className="catalogo-container">
+        <span className="catalogo-anchor" id="pecas-premium" aria-hidden="true" />
+
+        {hasPreAttendanceContext(initialContext) && contextLabel && (
+          <div className="catalogo-navigation-context" role="status">
+            <span>CONTEXTO DA CONSULTA</span>
+            <strong>{contextLabel}</strong>
+            <p>A listagem completa permanece disponível; nenhuma aplicação foi usada como filtro técnico.</p>
+          </div>
+        )}
         
         {/* Header Title & Controls */}
         <div className="catalogo-header">
@@ -64,7 +93,7 @@ export default function CatalogoDigital() {
           <div className="catalogo-header-actions">
             <div className="catalogo-header-note">
               <Box size={16} />
-              <span><strong>114</strong> perfis disponíveis</span>
+              <span><strong>{catalogData.length}</strong> perfis disponíveis</span>
             </div>
             <div className="catalogo-toolbar">
               <div className="catalogo-search-box">
@@ -73,25 +102,40 @@ export default function CatalogoDigital() {
                   type="text"
                   placeholder="Buscar por código (ex: M001)..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setVisibleCount(12);
+                  }}
+                  aria-label="Buscar perfis por código ou nome"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Categories Filter */}
-        <div className="catalogo-categories-filter">
-          {filterCategories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`catalogo-category-btn ${activeCategory === cat ? 'active' : ''}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {/* Application filters are rendered only from validated product data. */}
+        {validatedApplications.length > 0 ? (
+          <div className="catalogo-categories-filter" aria-label="Filtrar perfis por aplicação">
+            {[ALL_APPLICATIONS, ...validatedApplications].map((application) => (
+              <button
+                key={application}
+                type="button"
+                onClick={() => {
+                  setActiveApplication(application);
+                  setVisibleCount(12);
+                }}
+                className={`catalogo-category-btn ${activeApplication === application ? "active" : ""}`}
+                aria-pressed={activeApplication === application}
+              >
+                {application === ALL_APPLICATIONS ? application : formatApplicationLabel(application)}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="catalogo-classification-note">
+            Filtros por aplicação serão disponibilizados após a validação técnica dos perfis.
+          </p>
+        )}
 
         {/* Counter Info */}
         <div className="catalogo-meta-bar">
@@ -99,8 +143,9 @@ export default function CatalogoDigital() {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="catalogo-grid">
-          {displayedProducts.map((product, index) => (
+        {filteredProducts.length > 0 ? (
+          <div className="catalogo-grid">
+            {displayedProducts.map((product, index) => (
             <article key={product.codigo} className="catalogo-card">
               
               {/* Product Visual Area */}
@@ -144,8 +189,28 @@ export default function CatalogoDigital() {
               </div>
 
             </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="catalogo-empty-state" role="status">
+            <p>Nenhum perfil encontrado.</p>
+            <span>
+              {activeApplication !== ALL_APPLICATIONS
+                ? "Não há perfis classificados que correspondam à aplicação e à busca informadas."
+                : "Confira o código ou o nome digitado e tente novamente."}
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchTerm("");
+                setActiveApplication(ALL_APPLICATIONS);
+                setVisibleCount(12);
+              }}
+            >
+              Limpar busca
+            </button>
+          </div>
+        )}
 
         {/* Load More Action */}
         {visibleCount < filteredProducts.length && (
@@ -166,7 +231,7 @@ export default function CatalogoDigital() {
         <MolduraModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
-          onSelectWhatsApp={handleWhatsAppQuote}
+          onRequestQuote={handleRequestQuote}
         />
       )}
     </section>

@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { CheckCircle2, Package, ShieldCheck, PaintBucket } from "lucide-react";
+import { createPreAttendanceHref } from "@/lib/preAtendimento";
+import { Package, ShieldCheck, PaintBucket } from "lucide-react";
+import fachadaImage from "../../../Assets/institucional/10-fachada-contemporanea-clean.jpg";
+import janelasImage from "../../../Assets/3-Categoria-Guarnicoes-e-Janelas.jpg";
+import interioresImage from "../../../Assets/2-Categora-Filete-e-Boiseries.jpeg";
+import sobMedidaImage from "../../../Assets/institucional/03-sobre-nos-clean.webp";
+import styles from "./page.module.css";
+import SolutionGuide from "./SolutionGuide";
 
 export const metadata: Metadata = {
   title: "Molduras em EPS",
@@ -19,6 +27,53 @@ const faqs = [
   { question: "A Decorat faz instalação?", answer: "A Decorat é fabricante. Nós indicamos equipes parceiras experientes para executar a instalação ou oferecemos serviço de acompanhamento técnico à parte." },
   { question: "A Decorat envia para todo o Brasil?", answer: "Sim. Desenvolvemos embalagens seguras e trabalhamos com transportadoras para enviar nossos produtos para obras em todo o território nacional." },
   { question: "Preciso ter um projeto pronto?", answer: "Não necessariamente. Você pode nos enviar fotos e referências, e nós ajudamos a definir os perfis, oferecendo inclusive elaboração de projeto como serviço adicional se for preciso." }
+];
+
+const applicationPaths: Array<{
+  index: string;
+  title: string;
+  description: string;
+  image: StaticImageData;
+  imageAlt: string;
+  href: string;
+  action: string;
+}> = [
+  {
+    index: "01",
+    title: "Fachadas",
+    description: "Molduras, beirais, platibandas e volumes que organizam proporções e valorizam a leitura da arquitetura.",
+    image: fachadaImage,
+    imageAlt: "Fachada contemporânea executada com molduras arquitetônicas Decorat",
+    href: createPreAttendanceHref({ application: "fachadas" }),
+    action: "Falar sobre fachadas",
+  },
+  {
+    index: "02",
+    title: "Janelas e portas",
+    description: "Guarnições e arremates para destacar aberturas e criar transições precisas entre os elementos da fachada.",
+    image: janelasImage,
+    imageAlt: "Guarnições Decorat aplicadas ao redor de janelas e portas",
+    href: createPreAttendanceHref({ application: "janelas-e-portas" }),
+    action: "Falar sobre guarnições",
+  },
+  {
+    index: "03",
+    title: "Ambientes internos",
+    description: "Rodapés, filetes e detalhes lineares para compor paredes e acabamentos com leveza e continuidade visual.",
+    image: interioresImage,
+    imageAlt: "Aplicação real de filetes e boiseries Decorat em parede",
+    href: createPreAttendanceHref({ application: "ambientes-internos" }),
+    action: "Falar sobre interiores",
+  },
+  {
+    index: "04",
+    title: "Sob medida",
+    description: "Perfis adaptados ou peças exclusivas desenvolvidas a partir das referências, medidas e necessidades do projeto.",
+    image: sobMedidaImage,
+    imageAlt: "Arquiteta Andressa com peças de molduras produzidas pela Decorat",
+    href: createPreAttendanceHref({ application: "sob-medida" }),
+    action: "Falar sobre sob medida",
+  },
 ];
 
 export default function MoldurasEpsPage() {
@@ -38,20 +93,43 @@ export default function MoldurasEpsPage() {
         </div>
       </section>
 
-      {/* Aplicações */}
-      <section className="section">
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div className="section-heading" style={{ marginBottom: '36px' }}>
-            <p>LIBERDADE DE FORMAS</p>
-            <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: 'var(--deep)', margin: 0 }}>Aplicações arquitetônicas</h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
-            {["Janelas", "Portas", "Rodapés", "Platibandas", "Beirais", "Colunas", "Pergolados", "Marquises", "Volumes", "Ripados", "Shafts", "Fachadas e interiores"].map(app => (
-              <div key={app} style={{ padding: '16px 20px', backgroundColor: 'var(--paper)', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <CheckCircle2 size={18} color="var(--orange)" />
-                <span style={{ fontWeight: 650, color: 'var(--deep)', fontSize: '15px' }}>{app}</span>
-              </div>
+      {/* Descoberta por aplicação */}
+      <section className={styles.discovery} id="aplicacoes" aria-labelledby="application-paths-title">
+        <div className={styles.discoveryInner}>
+          <header className={styles.discoveryHeader}>
+            <div>
+              <p>DESCUBRA POR APLICAÇÃO</p>
+              <h2 id="application-paths-title">Onde as molduras transformam o projeto.</h2>
+            </div>
+            <p>Escolha o contexto mais próximo da sua necessidade. A equipe Decorat orienta a definição dos perfis e medidas antes da produção.</p>
+          </header>
+
+          <SolutionGuide />
+
+          <div className={styles.applicationList}>
+            {applicationPaths.map((application, position) => (
+              <article className={`${styles.applicationPath} ${position % 2 === 1 ? styles.reverse : ""}`} key={application.title}>
+                <div className={styles.applicationImage}>
+                  <Image
+                    src={application.image}
+                    alt={application.imageAlt}
+                    fill
+                    sizes="(max-width: 760px) 100vw, 58vw"
+                  />
+                </div>
+                <div className={styles.applicationCopy}>
+                  <span>{application.index} · APLICAÇÃO</span>
+                  <h3>{application.title}</h3>
+                  <p>{application.description}</p>
+                  <Link href={application.href}>{application.action} <b aria-hidden="true">→</b></Link>
+                </div>
+              </article>
             ))}
+          </div>
+
+          <div className={styles.catalogConnection}>
+            <p>Os perfis ainda não estão classificados individualmente por aplicação. Consulte o catálogo completo e confirme a escolha com a equipe técnica.</p>
+            <Link href="/catalogo">Consultar os 114 perfis <b aria-hidden="true">→</b></Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { createWhatsAppUrl, siteConfig } from "@/config/site";
 import { DecoratLogo, FacebookBrandIcon, InstagramBrandIcon, WhatsAppBrandIcon } from "./BrandIcons";
@@ -19,7 +19,14 @@ export default function SiteFooter() {
           <a className="footer-address" href={siteConfig.addressUrl} target="_blank" rel="noreferrer"><MapPin /> Rua Pintassilgo, 232 · Campo Grande - MS</a>
         </div>
       </div>
-      <div className="footer-bottom"><span>© 2026 Decorat. Todos os direitos reservados.<br /><Link className="footer-credit" href="/politica-de-privacidade">Política de privacidade</Link></span><span>Campo Grande - MS · Envio para todo o Brasil<br /><a className="footer-credit" href="https://www.instagram.com/dinamicasolucoesdigitais" target="_blank" rel="noreferrer">Desenvolvido por Dinâmica Soluções Digitais</a></span></div>
+      <div className="footer-bottom">
+        <span>© 2026 Decorat. Todos os direitos reservados.<br /><Link className="footer-credit" href="/politica-de-privacidade">Política de privacidade</Link></span>
+        <span>Campo Grande - MS · Envio para todo o Brasil<br />
+          <a className="footer-credit footer-dinamica" href="https://www.instagram.com/dinamicasolucoesdigitais" target="_blank" rel="noreferrer">
+            Desenvolvido por <strong className="dinamica-name">Dinâmica Soluções Digitais <ArrowUpRight className="dinamica-arrow" aria-hidden="true" /></strong>
+          </a>
+        </span>
+      </div>
     </footer>
   );
 }

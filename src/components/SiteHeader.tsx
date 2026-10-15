@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { DecoratLogo, InstagramBrandIcon } from "./BrandIcons";
@@ -15,8 +15,25 @@ type SiteHeaderProps = {
 
 export default function SiteHeader({ active, ctaHref = "/contato", onCtaClick, externalCta = false }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const mobileNavigationRef = useRef<HTMLDivElement>(null);
+  const solutionsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const closeSolutions = (event: MouseEvent) => {
+      if (!solutionsRef.current?.contains(event.target as Node)) setSolutionsOpen(false);
+    };
+    const closeSolutionsOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSolutionsOpen(false);
+    };
+    document.addEventListener("pointerdown", closeSolutions);
+    document.addEventListener("keydown", closeSolutionsOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeSolutions);
+      document.removeEventListener("keydown", closeSolutionsOnEscape);
+    };
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -69,11 +86,17 @@ export default function SiteHeader({ active, ctaHref = "/contato", onCtaClick, e
       <header className="site-header">
         <DecoratLogo priority />
         <nav aria-label="Navegação principal">
-          <Link className={active === "home" ? "active" : undefined} aria-current={active === "home" ? "page" : undefined} href="/">Home</Link>
-          <Link className={active === "about" ? "active" : undefined} aria-current={active === "about" ? "page" : undefined} href="/quem-somos">Quem somos</Link>
-          <Link className={active === "molduras-em-eps" ? "active" : undefined} aria-current={active === "molduras-em-eps" ? "page" : undefined} href="/molduras-em-eps">Molduras em EPS</Link>
+          <div className="nav-solutions" ref={solutionsRef}>
+            <button className={active === "molduras-em-eps" ? "active" : undefined} type="button" aria-expanded={solutionsOpen} aria-controls="solutions-menu" onClick={() => setSolutionsOpen((current) => !current)}>Soluções <ChevronDown aria-hidden="true" /></button>
+            <div className={`solutions-menu${solutionsOpen ? " is-open" : ""}`} id="solutions-menu">
+              <Link href="/molduras-em-eps" onClick={() => setSolutionsOpen(false)}>Molduras em EPS</Link>
+              <Link href="/catalogo#pecas-premium" onClick={() => setSolutionsOpen(false)}>Peças premium</Link>
+              <Link href="/#sob-medida" onClick={() => setSolutionsOpen(false)}>Sob medida</Link>
+              <Link href="/#processo" onClick={() => setSolutionsOpen(false)}>Como funciona</Link>
+            </div>
+          </div>
           <Link className={active === "catalogo" ? "active" : undefined} aria-current={active === "catalogo" ? "page" : undefined} href="/catalogo">Catálogo</Link>
-          <Link className={active === "contact" ? "active" : undefined} aria-current={active === "contact" ? "page" : undefined} href="/contato">Contato</Link>
+          <Link className={active === "about" ? "active" : undefined} aria-current={active === "about" ? "page" : undefined} href="/quem-somos">A Decorat</Link>
         </nav>
         <div className="header-actions">
           <a className="instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram da Decorat"><InstagramBrandIcon /></a>
@@ -82,11 +105,15 @@ export default function SiteHeader({ active, ctaHref = "/contato", onCtaClick, e
         </div>
         <div ref={mobileNavigationRef} className={`mobile-navigation${menuOpen ? " is-open" : ""}`} id="mobile-navigation" aria-hidden={!menuOpen}>
           <nav aria-label="Navegação mobile">
-            <Link aria-current={active === "home" ? "page" : undefined} href="/" onClick={closeMenu}>Home</Link>
-            <Link aria-current={active === "about" ? "page" : undefined} href="/quem-somos" onClick={closeMenu}>Quem somos</Link>
-            <Link aria-current={active === "molduras-em-eps" ? "page" : undefined} href="/molduras-em-eps" onClick={closeMenu}>Molduras em EPS</Link>
+            <span className="mobile-solutions-label">Soluções</span>
+            <div className="mobile-solutions-links">
+              <Link href="/molduras-em-eps" onClick={closeMenu}>Molduras em EPS</Link>
+              <Link href="/catalogo#pecas-premium" onClick={closeMenu}>Peças premium</Link>
+              <Link href="/#sob-medida" onClick={closeMenu}>Sob medida</Link>
+              <Link href="/#processo" onClick={closeMenu}>Como funciona</Link>
+            </div>
             <Link aria-current={active === "catalogo" ? "page" : undefined} href="/catalogo" onClick={closeMenu}>Catálogo</Link>
-            <Link aria-current={active === "contact" ? "page" : undefined} href="/contato" onClick={closeMenu}>Contato</Link>
+            <Link aria-current={active === "about" ? "page" : undefined} href="/quem-somos" onClick={closeMenu}>A Decorat</Link>
           </nav>
           <a className="mobile-instagram" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer"><InstagramBrandIcon /> @decorat.molduras</a>
           {cta(true)}
